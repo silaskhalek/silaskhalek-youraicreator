@@ -19,6 +19,12 @@ Edite o objeto `CONFIG` no topo de `script.js`:
 
 Sem `formEndpoint` nem `whatsapp`, o formulário mostra erro ao enviar.
 
+## Comandos dos terminais
+
+Os pedidos que aparecem digitando nos terminais ficam na lista `SCENARIOS` em `script.js`
+(pasta, comando, etapas e resultado). A ordem bate com as abas da seção "O método":
+Vídeo, Site, Imagem e Roteiro.
+
 ## Foto
 
 Coloque sua foto em `assets/silas.jpg` e troque o bloco `.about__placeholder` em `index.html` por:

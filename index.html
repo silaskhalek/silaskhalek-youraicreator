@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#09090b" />
+  <meta name="theme-color" content="#f6f2ea" />
   <title>Silas Khalek · Your AI Creator</title>
-  <meta name="description" content="Aprenda a criar com inteligência artificial do jeito que eu crio: na prática, sem jargão e sem precisar programar. Entre na lista de espera do curso." />
+  <meta name="description" content="Você pede em português e a IA cria: vídeo, site, imagem e roteiro. Aprenda o meu processo, sem jargão e sem precisar programar. Entre na lista de espera do curso." />
   <meta property="og:title" content="Silas Khalek · Your AI Creator" />
-  <meta property="og:description" content="Crie com IA na prática, sem jargão e sem precisar programar. Entre na lista de espera do curso." />
+  <meta property="og:description" content="Você pede em português e a IA cria. Entre na lista de espera do curso." />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="pt_BR" />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
@@ -24,42 +24,79 @@
       <a href="#topo" class="logo" aria-label="Silas Khalek, início">
         <span class="logo__mark" aria-hidden="true">✳</span>
         <span>Silas Khalek</span>
+        <span class="logo__tag">your ai creator</span>
       </a>
       <nav class="nav__links" aria-label="Principal">
+        <a href="#metodo">Método</a>
         <a href="#curso">O curso</a>
         <a href="#sobre">Sobre</a>
         <a href="#faq">Dúvidas</a>
       </nav>
-      <a href="#lista" class="btn btn--small">Lista de espera</a>
+      <a href="#lista" class="btn btn--small">Entrar na lista</a>
     </div>
   </header>
 
   <main id="conteudo">
     <!-- HERO -->
     <section class="hero">
-      <div class="hero__glow" aria-hidden="true"></div>
-      <div class="hero__grid" aria-hidden="true"></div>
       <div class="wrap hero__inner">
-        <p class="kicker reveal"><span class="dot"></span> Curso em produção · Turma fundadora</p>
-        <h1 class="hero__title reveal">
-          Crie com IA.<br />
-          <em>Venda</em> o que cria.
-        </h1>
-        <p class="hero__sub reveal">
-          Eu uso inteligência artificial todo dia pra criar conteúdo, vídeo e produto.
-          Agora vou te mostrar o processo inteiro, do zero, sem jargão e sem precisar programar.
-        </p>
-        <div class="hero__ctas reveal">
-          <a href="#lista" class="btn">Quero entrar na lista <span aria-hidden="true">→</span></a>
-          <a href="#curso" class="btn btn--ghost">Ver o que vem por aí</a>
+        <div class="hero__copy">
+          <p class="kicker reveal"><span class="dot"></span> Curso em produção · Turma fundadora</p>
+          <h1 class="hero__title reveal">
+            Eu peço em português.<br />
+            <em>A IA cria.</em>
+          </h1>
+          <p class="hero__sub reveal">
+            Vídeo, site, imagem e roteiro saindo de um pedido escrito, do jeito que eu faço todo dia.
+            Vou te ensinar o processo inteiro, do zero, sem jargão e sem precisar programar.
+          </p>
+          <ul class="chips reveal" aria-label="Ferramentas abordadas">
+            <li>Claude</li>
+            <li>Claude Code</li>
+            <li>Imagem com IA</li>
+            <li>Vídeo com IA</li>
+          </ul>
+          <div class="hero__ctas reveal">
+            <a href="#lista" class="btn">Quero entrar na lista <span aria-hidden="true">→</span></a>
+            <span class="pill">Vagas da turma fundadora</span>
+          </div>
         </div>
-        <ul class="hero__tags reveal" aria-label="Ferramentas abordadas">
-          <li>Claude</li>
-          <li>Claude Code</li>
-          <li>Imagem com IA</li>
-          <li>Vídeo com IA</li>
-          <li>Automação</li>
-        </ul>
+
+        <div class="hero__stage reveal" aria-hidden="true">
+          <!-- Janela flutuante: imagem gerada -->
+          <div class="win win--light float float--a hero__float-img">
+            <div class="win__bar"><i></i><i></i><i></i><span>capa_post.png</span></div>
+            <div class="art">
+              <span class="art__orb"></span>
+              <span class="art__title">crie<br /><em>com IA</em></span>
+            </div>
+          </div>
+
+          <!-- Janela flutuante: site -->
+          <div class="win win--light float float--b hero__float-site">
+            <div class="win__bar"><i></i><i></i><i></i><span>meucurso.vercel.app</span></div>
+            <div class="mini-site">
+              <span class="sk sk--title"></span>
+              <span class="sk"></span>
+              <span class="sk sk--short"></span>
+              <span class="sk sk--btn"></span>
+            </div>
+          </div>
+
+          <!-- Terminal principal -->
+          <div class="win term hero__term" data-term="hero">
+            <div class="win__bar"><i></i><i></i><i></i><span class="term__path">claude · ~/projetos</span></div>
+            <div class="term__body">
+              <p class="term__cmd"><span class="term__prompt">&gt;</span> <span class="term__typed"></span><span class="term__caret"></span></p>
+              <ol class="term__steps"></ol>
+              <div class="term__progress">
+                <div class="term__progress-head"><span>Progresso</span><span class="term__pct">0%</span></div>
+                <div class="term__bar"><span></span></div>
+              </div>
+              <p class="term__done"></p>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="marquee" aria-hidden="true">
@@ -70,7 +107,7 @@
       </div>
     </section>
 
-    <!-- PROBLEMA / VIRADA -->
+    <!-- CENÁRIO -->
     <section class="section statement">
       <div class="wrap">
         <p class="kicker reveal">01 · O cenário</p>
@@ -81,52 +118,186 @@
       </div>
     </section>
 
-    <!-- O CURSO -->
-    <section class="section" id="curso">
+    <!-- MÉTODO -->
+    <section class="section section--alt" id="metodo">
+      <div class="wrap">
+        <div class="method">
+          <div class="method__copy">
+            <p class="kicker reveal">02 · O método</p>
+            <h2 class="h2 reveal">Você pede. A IA faz. <em>Você revisa.</em></h2>
+            <p class="lead reveal">
+              Você abre a IA na pasta do projeto e escreve o que quer ver, em português.
+              Ela executa, mostra o que fez e você ajusta. O curso monta esse ambiente na sua
+              máquina e te ensina a pedir.
+            </p>
+            <p class="method__hint reveal">Escolha um pedido e veja rodando →</p>
+          </div>
+
+          <div class="method__demo reveal">
+            <div class="tabs" role="tablist" aria-label="Exemplos de comandos">
+              <button class="tab is-active" role="tab" aria-selected="true" data-scenario="0">Vídeo</button>
+              <button class="tab" role="tab" aria-selected="false" data-scenario="1">Site</button>
+              <button class="tab" role="tab" aria-selected="false" data-scenario="2">Imagem</button>
+              <button class="tab" role="tab" aria-selected="false" data-scenario="3">Roteiro</button>
+            </div>
+            <div class="win term term--lg" data-term="method">
+              <div class="win__bar"><i></i><i></i><i></i><span class="term__path">claude · ~/projetos</span></div>
+              <div class="term__body">
+                <p class="term__cmd"><span class="term__prompt">&gt;</span> <span class="term__typed"></span><span class="term__caret"></span></p>
+                <ol class="term__steps"></ol>
+                <div class="term__progress">
+                  <div class="term__progress-head"><span>Progresso</span><span class="term__pct">0%</span></div>
+                  <div class="term__bar"><span></span></div>
+                </div>
+                <p class="term__done"></p>
+              </div>
+            </div>
+            <button class="copy" type="button" data-copy>
+              <span aria-hidden="true">⧉</span> <span class="copy__label">Copiar comando</span>
+            </button>
+          </div>
+        </div>
+
+        <ol class="steps">
+          <li class="reveal"><span>01</span><h3>Organize a pasta</h3><p>Arquivos, referências e briefing no mesmo lugar.</p></li>
+          <li class="reveal"><span>02</span><h3>Peça</h3><p>Uma frase em português com o que você quer ver.</p></li>
+          <li class="reveal"><span>03</span><h3>Revise</h3><p>Abra o resultado, aponte o que ajustar e peça a correção.</p></li>
+          <li class="reveal"><span>04</span><h3>Reaproveite</h3><p>O mesmo pedido serve pro próximo projeto.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- PRA QUEM É -->
+    <section class="section">
       <div class="wrap">
         <div class="section__head">
-          <p class="kicker reveal">02 · O curso</p>
-          <h2 class="h2 reveal">O que você vai <em>aprender</em>.</h2>
+          <p class="kicker reveal">03 · Pra quem é</p>
+          <h2 class="h2 reveal">A ideia tá pronta <em>desde terça</em>.</h2>
+        </div>
+
+        <div class="cases">
+          <article class="case reveal">
+            <div class="win win--light case__win" aria-hidden="true">
+              <div class="win__bar"><i></i><i></i><i></i><span>Finder</span></div>
+              <div class="finder">
+                <div class="finder__head"><span>~/ideias</span><span class="badge">Parado</span></div>
+                <ul>
+                  <li><span>▤</span>reel_sobre_ia.txt<small>3 sem</small></li>
+                  <li><span>▤</span>roteiro_youtube.txt<small>4 sem</small></li>
+                  <li><span>▤</span>serie_dicas.txt<small>5 sem</small></li>
+                  <li><span>▤</span>collab_marca.txt<small>6 sem</small></li>
+                  <li><span>▤</span>tutorial_novo.txt<small>2 mês</small></li>
+                </ul>
+              </div>
+            </div>
+            <p class="case__tag">01 · Criador de conteúdo</p>
+            <p class="case__text">As ideias estão todas aqui. O tempo pra produzir, não.</p>
+          </article>
+
+          <article class="case reveal">
+            <div class="win win--light case__win" aria-hidden="true">
+              <div class="win__bar"><i></i><i></i><i></i><span>Notas</span></div>
+              <div class="notes">
+                <p class="notes__title">Pendências</p>
+                <ul>
+                  <li>Fazer o site do negócio</li>
+                  <li>Editar o vídeo da semana</li>
+                  <li>Criar a identidade visual</li>
+                  <li>Escrever os posts do mês</li>
+                  <li>Aprender a usar IA</li>
+                </ul>
+              </div>
+            </div>
+            <p class="case__tag">02 · Quem empreende</p>
+            <p class="case__text">A lista só cresce. E cada item depende de alguém.</p>
+          </article>
+
+          <article class="case reveal">
+            <div class="win win--light case__win" aria-hidden="true">
+              <div class="win__bar"><i></i><i></i><i></i><span>Calculadora</span></div>
+              <div class="calc">
+                <div class="calc__screen">
+                  <small>R$ 250 × 3 vídeos × 4 semanas</small>
+                  <strong>R$ 3.000</strong>
+                  <small>por mês, todo mês</small>
+                </div>
+                <div class="calc__keys">
+                  <span>7</span><span>8</span><span>9</span><span class="op">÷</span>
+                  <span>4</span><span>5</span><span>6</span><span class="op">×</span>
+                </div>
+              </div>
+            </div>
+            <p class="case__tag">03 · Quem terceiriza</p>
+            <p class="case__text">Editor a R$ 250 por vídeo, três por semana. Faz a conta.</p>
+          </article>
+        </div>
+
+        <p class="cases__note reveal">
+          Nos três casos o movimento é o mesmo: <strong>você direciona, a IA executa.</strong>
+          O curso mostra o que pedir, como organizar os arquivos e como revisar sem refazer.
+        </p>
+      </div>
+    </section>
+
+    <!-- O CURSO -->
+    <section class="section section--alt" id="curso">
+      <div class="wrap">
+        <div class="section__head">
+          <p class="kicker reveal">04 · O curso</p>
+          <h2 class="h2 reveal">Do primeiro pedido ao <em>projeto vendido</em>.</h2>
           <p class="lead reveal">
-            Um caminho em módulos, do primeiro prompt até um projeto pronto pra vender.
+            Aulas gravadas na tela, na ordem em que você vai precisar.
             A grade final está sendo construída agora, e quem estiver na lista acompanha de perto.
           </p>
         </div>
 
         <ol class="modules">
-          <li class="module reveal">
-            <span class="module__num">01</span>
-            <div>
-              <h3>Fundamentos que funcionam</h3>
-              <p>Como pensar com a IA, escrever bons pedidos e montar o seu próprio fluxo de criação, sem decorar fórmula mágica.</p>
+          <li class="win win--light module reveal">
+            <div class="win__bar"><i></i><i></i><i></i><span>modulo-01</span></div>
+            <div class="module__body">
+              <span class="module__num">01</span>
+              <h3>Seu ambiente de IA</h3>
+              <p>Instalação, primeiro acesso e como conversar com a IA do jeito certo, no Windows e no Mac.</p>
             </div>
           </li>
-          <li class="module reveal">
-            <span class="module__num">02</span>
-            <div>
+          <li class="win win--light module reveal">
+            <div class="win__bar"><i></i><i></i><i></i><span>modulo-02</span></div>
+            <div class="module__body">
+              <span class="module__num">02</span>
               <h3>Conteúdo e imagem</h3>
-              <p>Roteiros, posts, identidade visual e imagens com IA que parecem feitas por um estúdio, não por um robô.</p>
+              <p>Roteiros, posts, identidade visual e imagens que parecem de estúdio, não de robô.</p>
             </div>
           </li>
-          <li class="module reveal">
-            <span class="module__num">03</span>
-            <div>
-              <h3>Vídeo e edição com IA</h3>
-              <p>Do roteiro ao vídeo renderizado: geração, edição e motion com ferramentas de IA e Claude Code.</p>
+          <li class="win win--light module reveal">
+            <div class="win__bar"><i></i><i></i><i></i><span>modulo-03</span></div>
+            <div class="module__body">
+              <span class="module__num">03</span>
+              <h3>Vídeo por comando</h3>
+              <p>Corte, legenda e motion pedindo em português, com Claude Code fazendo o trabalho pesado.</p>
             </div>
           </li>
-          <li class="module reveal">
-            <span class="module__num">04</span>
-            <div>
-              <h3>Sites e produtos digitais</h3>
-              <p>Crie páginas e pequenos produtos com IA, publique na internet e tenha algo seu pra mostrar e vender.</p>
+          <li class="win win--light module reveal">
+            <div class="win__bar"><i></i><i></i><i></i><span>modulo-04</span></div>
+            <div class="module__body">
+              <span class="module__num">04</span>
+              <h3>Sites e produtos</h3>
+              <p>Páginas e pequenos produtos digitais criados com IA e publicados na internet.</p>
             </div>
           </li>
-          <li class="module reveal">
-            <span class="module__num">05</span>
-            <div>
+          <li class="win win--light module reveal">
+            <div class="win__bar"><i></i><i></i><i></i><span>modulo-05</span></div>
+            <div class="module__body">
+              <span class="module__num">05</span>
+              <h3>A IA no seu estilo</h3>
+              <p>Ensine a IA o seu jeito: tom de voz, cores, fontes e formatos que você sempre usa.</p>
+            </div>
+          </li>
+          <li class="win win--light module reveal">
+            <div class="win__bar"><i></i><i></i><i></i><span>modulo-06</span></div>
+            <div class="module__body">
+              <span class="module__num">06</span>
               <h3>Do projeto à renda</h3>
-              <p>Como precificar, apresentar e vender o que você cria, seja como serviço, produto ou conteúdo.</p>
+              <p>Como precificar, apresentar e vender o que você cria, como serviço, produto ou conteúdo.</p>
             </div>
           </li>
         </ol>
@@ -134,10 +305,10 @@
     </section>
 
     <!-- PILARES -->
-    <section class="section section--alt">
+    <section class="section">
       <div class="wrap">
         <div class="section__head">
-          <p class="kicker reveal">03 · Como vai ser</p>
+          <p class="kicker reveal">05 · Como vai ser</p>
           <h2 class="h2 reveal">Feito pra quem quer <em>fazer</em>, não só assistir.</h2>
         </div>
         <div class="pillars">
@@ -160,34 +331,16 @@
       </div>
     </section>
 
-    <!-- PRA QUEM É -->
-    <section class="section">
-      <div class="wrap split">
-        <div>
-          <p class="kicker reveal">04 · Pra quem é</p>
-          <h2 class="h2 reveal">Se você se vê aqui, <em>é pra você</em>.</h2>
-        </div>
-        <ul class="checklist">
-          <li class="reveal">Criador de conteúdo que quer produzir mais sem aumentar a equipe.</li>
-          <li class="reveal">Freelancer ou editor que quer oferecer serviços novos com IA.</li>
-          <li class="reveal">Quem quer uma renda extra criando com ferramentas que já existem.</li>
-          <li class="reveal">Empreendedor que quer fazer o próprio site, vídeo e material sem depender de ninguém.</li>
-          <li class="reveal">Curioso que já testou IA mas ainda não sabe como transformar em resultado.</li>
-        </ul>
-      </div>
-    </section>
-
     <!-- SOBRE -->
     <section class="section section--alt" id="sobre">
       <div class="wrap about">
-        <div class="about__photo reveal">
+        <div class="win win--light about__photo reveal">
+          <div class="win__bar"><i></i><i></i><i></i><span>silas.jpg</span></div>
           <!-- Troque por uma foto sua: <img src="assets/silas.jpg" alt="Silas Khalek" /> -->
-          <div class="about__placeholder" aria-hidden="true">
-            <span>SK</span>
-          </div>
+          <div class="about__placeholder" aria-hidden="true"><span>SK</span></div>
         </div>
         <div class="about__text">
-          <p class="kicker reveal">05 · Quem ensina</p>
+          <p class="kicker reveal">06 · Quem ensina</p>
           <h2 class="h2 reveal">Prazer, <em>Silas Khalek</em>.</h2>
           <p class="reveal">
             Eu sou criador e uso inteligência artificial como parte do meu trabalho todo santo dia.
@@ -205,34 +358,36 @@
 
     <!-- LISTA DE ESPERA -->
     <section class="section cta" id="lista">
-      <div class="cta__glow" aria-hidden="true"></div>
       <div class="wrap cta__inner">
-        <p class="kicker reveal">06 · Lista de espera</p>
+        <p class="kicker reveal">07 · Lista de espera</p>
         <h2 class="cta__title reveal">Seja da <em>turma fundadora</em>.</h2>
         <p class="lead reveal">
           Quem entra na lista fica sabendo primeiro da abertura, recebe conteúdo dos bastidores
           e garante a condição especial de lançamento.
         </p>
 
-        <form class="form reveal" id="waitlist" novalidate>
-          <div class="form__row">
-            <label class="field">
-              <span>Seu nome</span>
-              <input type="text" name="nome" autocomplete="given-name" required placeholder="Como posso te chamar?" />
-            </label>
-            <label class="field">
-              <span>Seu e-mail</span>
-              <input type="email" name="email" autocomplete="email" required placeholder="voce@email.com" />
-            </label>
-            <label class="field">
-              <span>WhatsApp <small>(opcional)</small></span>
-              <input type="tel" name="whatsapp" autocomplete="tel" placeholder="(11) 99999-9999" />
-            </label>
-          </div>
-          <button type="submit" class="btn btn--block">Quero entrar na lista <span aria-hidden="true">→</span></button>
-          <p class="form__note">Sem spam. Você pode sair da lista quando quiser.</p>
-          <p class="form__status" role="status" aria-live="polite"></p>
-        </form>
+        <div class="win win--light form-win reveal">
+          <div class="win__bar"><i></i><i></i><i></i><span>lista-de-espera · turma fundadora</span></div>
+          <form class="form" id="waitlist" novalidate>
+            <div class="form__row">
+              <label class="field">
+                <span>Seu nome</span>
+                <input type="text" name="nome" autocomplete="given-name" required placeholder="Como posso te chamar?" />
+              </label>
+              <label class="field">
+                <span>Seu e-mail</span>
+                <input type="email" name="email" autocomplete="email" required placeholder="voce@email.com" />
+              </label>
+              <label class="field">
+                <span>WhatsApp <small>(opcional)</small></span>
+                <input type="tel" name="whatsapp" autocomplete="tel" placeholder="(11) 99999-9999" />
+              </label>
+            </div>
+            <button type="submit" class="btn btn--block">Quero entrar na lista <span aria-hidden="true">→</span></button>
+            <p class="form__note">Sem spam. Você pode sair da lista quando quiser.</p>
+            <p class="form__status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
       </div>
     </section>
 
@@ -240,7 +395,7 @@
     <section class="section" id="faq">
       <div class="wrap faq">
         <div>
-          <p class="kicker reveal">07 · Dúvidas</p>
+          <p class="kicker reveal">08 · Dúvidas</p>
           <h2 class="h2 reveal">Perguntas <em>frequentes</em>.</h2>
         </div>
         <div class="faq__list">
@@ -250,11 +405,15 @@
           </details>
           <details class="reveal">
             <summary>Preciso saber programar?</summary>
-            <p>Não. Tudo é ensinado do zero, em português, sem jargão. Se em algum momento tiver código, a IA escreve e eu te mostro como usar.</p>
+            <p>Não. Tudo é ensinado do zero, em português, sem jargão. Os comandos são pedidos escritos como você escreveria pra uma pessoa.</p>
           </details>
           <details class="reveal">
             <summary>Preciso pagar alguma ferramenta?</summary>
             <p>Dá pra começar com as versões gratuitas. Quando alguma ferramenta paga fizer diferença de verdade, eu explico o porquê e quanto custa.</p>
+          </details>
+          <details class="reveal">
+            <summary>Funciona no Windows e no Mac?</summary>
+            <p>Sim. A instalação é mostrada nos dois sistemas, passo a passo.</p>
           </details>
           <details class="reveal">
             <summary>Quanto vai custar?</summary>
@@ -271,7 +430,7 @@
     <!-- FECHAMENTO -->
     <section class="section closing">
       <div class="wrap">
-        <h2 class="closing__title reveal">O que você vai <em>criar</em> primeiro?</h2>
+        <h2 class="closing__title reveal">O que você vai <em>pedir</em> primeiro?</h2>
         <a href="#lista" class="btn reveal">Garantir meu lugar <span aria-hidden="true">→</span></a>
       </div>
     </section>
@@ -284,6 +443,7 @@
         <span>Silas Khalek</span>
       </a>
       <nav class="footer__links" aria-label="Rodapé">
+        <a href="#metodo">Método</a>
         <a href="#curso">O curso</a>
         <a href="#sobre">Sobre</a>
         <a href="#faq">Dúvidas</a>
