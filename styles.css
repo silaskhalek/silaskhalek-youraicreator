@@ -897,6 +897,8 @@ h1, h2, h3 { font-family: var(--display); font-weight: 700; text-wrap: balance; 
 
 .about__text p:not(.kicker) { color: var(--muted); font-size: 18px; margin: 20px 0 0; }
 .about__text .h2 { margin-bottom: 8px; }
+.about__creds { margin: 20px 0 4px; }
+.about__creds li { font-size: 12.5px; padding: 6px 12px; }
 
 /* Lista de espera */
 
