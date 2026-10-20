@@ -19,14 +19,14 @@ const CONFIG = {
    ========================================================================== */
 const SCENARIOS = [
   {
-    path: "~/videos/reel-ia",
-    cmd: "Transforma essa gravação num reel de 30s: corta as pausas, legenda palavra a palavra e destaca as palavras-chave em roxo.",
+    path: "~/videos/live-sabado",
+    cmd: "Pega a live de sábado, encontra os 3 momentos mais fortes e transforma cada um num vídeo vertical com legenda no meu estilo.",
     steps: [
-      "Detecta os silêncios e fecha os buracos",
-      "Transcreve e sincroniza a legenda",
-      "Aplica o seu estilo e renderiza 1080×1920",
+      "Lê a transcrição e marca os trechos com mais energia",
+      "Reenquadra pro vertical acompanhando o rosto",
+      "Aplica a sua legenda e exporta os três",
     ],
-    done: "✓ reel_final.mp4 · 1080×1920 · pronto pra postar",
+    done: "✓ 3 vídeos prontos em ~/videos/live-sabado/cortes",
   },
   {
     path: "~/sites/meu-curso",
@@ -252,6 +252,93 @@ if (methodEl) {
     }, 1800);
   });
 }
+
+/* ==========================================================================
+   Texto que preenche palavra por palavra conforme a rolagem
+   ========================================================================== */
+const wrapWords = (node) => {
+  [...node.childNodes].forEach((child) => {
+    if (child.nodeType === Node.TEXT_NODE) {
+      const frag = document.createDocumentFragment();
+      child.textContent.split(/(\s+)/).forEach((part) => {
+        if (!part) return;
+        if (/^\s+$/.test(part)) {
+          frag.append(" ");
+        } else {
+          const span = document.createElement("span");
+          span.className = "w";
+          span.textContent = part;
+          frag.append(span);
+        }
+      });
+      child.replaceWith(frag);
+    } else {
+      wrapWords(child);
+    }
+  });
+};
+
+const fillEls = [...document.querySelectorAll("[data-fill]")].map((el) => {
+  wrapWords(el);
+  return { el, words: [...el.querySelectorAll(".w")] };
+});
+
+const roadmap = document.querySelector("[data-roadmap]");
+const roadmapItems = roadmap ? [...roadmap.querySelectorAll(".roadmap__item")] : [];
+
+// 0 quando o topo do elemento chega em `start` da tela, 1 quando o fim chega em `end`
+const scrollProgress = (el, start, end) => {
+  const r = el.getBoundingClientRect();
+  const vh = window.innerHeight;
+  const total = r.height + vh * (start - end);
+  return Math.min(1, Math.max(0, (vh * start - r.top) / total));
+};
+
+const updateScroll = () => {
+  fillEls.forEach(({ el, words }) => {
+    const lit = reduceMotion ? words.length : Math.round(scrollProgress(el, 0.85, 0.45) * words.length);
+    words.forEach((w, i) => w.classList.toggle("is-lit", i < lit));
+  });
+
+  if (roadmap) {
+    const p = reduceMotion ? 1 : scrollProgress(roadmap, 0.6, 0.6);
+    roadmap.style.setProperty("--fill", p.toFixed(3));
+    const line = roadmap.getBoundingClientRect();
+    roadmapItems.forEach((item) => {
+      const dot = item.querySelector(".roadmap__num").getBoundingClientRect();
+      const reached = (dot.top + dot.height / 2 - line.top) / line.height <= p + 0.02;
+      item.classList.toggle("is-reached", reached);
+    });
+  }
+};
+
+let ticking = false;
+const onScrollFrame = () => {
+  if (ticking) return;
+  ticking = true;
+  requestAnimationFrame(() => {
+    updateScroll();
+    ticking = false;
+  });
+};
+updateScroll();
+window.addEventListener("scroll", onScrollFrame, { passive: true });
+window.addEventListener("resize", onScrollFrame);
+
+/* ==========================================================================
+   Pra quem é: abas de perfil
+   ========================================================================== */
+const personaTabs = [...document.querySelectorAll(".persona__tab")];
+personaTabs.forEach((tab) => {
+  tab.addEventListener("click", () => {
+    personaTabs.forEach((t) => {
+      const active = t === tab;
+      t.classList.toggle("is-active", active);
+      t.setAttribute("aria-selected", String(active));
+      document.getElementById(t.getAttribute("aria-controls")).hidden = !active;
+    });
+  });
+});
 
 /* ==========================================================================
    Lista de espera
