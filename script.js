@@ -3,7 +3,7 @@
    ========================================================================== */
 const CONFIG = {
   // Seu @ do Instagram, sem o "@" (ex.: "silaskhalek"). Vazio esconde os links.
-  instagram: "",
+  instagram: "silas.khalek",
 
   // URL que recebe os cadastros da lista de espera (ex.: endpoint do Formspree,
   // "https://formspree.io/f/xxxxxxx"). Recebe nome, email e whatsapp via POST.
@@ -11,7 +11,7 @@ const CONFIG = {
 
   // Alternativa sem backend: número do WhatsApp com DDI e DDD, só dígitos
   // (ex.: "5511999999999"). Usado apenas se formEndpoint estiver vazio.
-  whatsapp: "",
+  whatsapp: "5511960965638",
 };
 
 /* ==========================================================================
@@ -302,7 +302,13 @@ form.addEventListener("submit", async (e) => {
     }
 
     form.classList.add("is-done");
-    setStatus(`Pronto, ${nome.split(" ")[0]}! Você está na lista. Fica de olho no seu e-mail.`, "ok");
+    const primeiroNome = nome.split(" ")[0];
+    setStatus(
+      CONFIG.formEndpoint
+        ? `Pronto, ${primeiroNome}! Você está na lista. Fica de olho no seu e-mail.`
+        : `Quase lá, ${primeiroNome}! Abrimos o WhatsApp: é só enviar a mensagem pra garantir seu lugar.`,
+      "ok"
+    );
   } catch (err) {
     console.error(err);
     setStatus("Não deu pra enviar agora. Tenta de novo em instantes.", "error");

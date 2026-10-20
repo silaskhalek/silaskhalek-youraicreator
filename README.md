@@ -27,11 +27,7 @@ Vídeo, Site, Imagem e Roteiro.
 
 ## Foto
 
-Coloque sua foto em `assets/silas.jpg` e troque o bloco `.about__placeholder` em `index.html` por:
-
-```html
-<img src="assets/silas.jpg" alt="Silas Khalek" />
-```
+A foto da seção "Sobre" fica em `assets/silas.jpg` (4:5, 960×1200). Para trocar, substitua o arquivo mantendo o nome.
 
 ## Publicar
 
