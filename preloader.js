@@ -64,10 +64,12 @@
     const ARMS = 3;
     particles = Array.from({ length: count }, (_, i) => {
       // Galáxia: braços em espiral, mais densa no centro
+      // 22% formam o núcleo redondo; o resto, os braços
+      const core = Math.random() < 0.22;
       const arm = i % ARMS;
-      const r = Math.pow(Math.random(), 0.7) * R + 4;
-      const spread = (Math.random() - 0.5) * (0.9 - (r / R) * 0.5);
-      const theta = (arm / ARMS) * Math.PI * 2 + (r / R) * 4.2 + spread;
+      const r = core ? Math.pow(Math.random(), 1.6) * R * 0.32 + 2 : Math.pow(Math.random(), 0.7) * R + 4;
+      const spread = (Math.random() - 0.5) * (1.2 - (r / R) * 0.6);
+      const theta = core ? Math.random() * Math.PI * 2 : (arm / ARMS) * Math.PI * 2 + (r / R) * 4.2 + spread;
       const spin = 0.00055 + 0.0016 * (1 - r / R);
 
       // Alvo: uma das 4 hastes do ✳, ou poeira em volta (15%)
@@ -143,15 +145,16 @@
     ctx.globalCompositeOperation = "source-over";
 
     // Brilho do núcleo
-    const glowR = R * (0.55 - m * 0.2) * (1 + e * 2);
+    const glowR = R * (0.8 - m * 0.35) * (1 + e * 2);
     const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, glowR);
-    g.addColorStop(0, `rgba(139,92,246,${0.2 + m * 0.14})`);
+    const glowA = 0.16 + m * 0.14;
+    g.addColorStop(0, `rgba(139,92,246,${glowA})`);
+    g.addColorStop(0.35, `rgba(139,92,246,${glowA * 0.45})`);
     g.addColorStop(1, "rgba(139,92,246,0)");
     ctx.fillStyle = g;
     ctx.fillRect(0, 0, W, H);
 
     ctx.globalCompositeOperation = "lighter";
-    const tilt = 0.55 + m * 0.45;
     const rot = t * 0.00012;
     const cosR = Math.cos(rot);
     const sinR = Math.sin(rot);
@@ -160,7 +163,7 @@
     for (const p of particles) {
       const a = p.theta + t * p.spin;
       const gx = Math.cos(a) * p.r;
-      const gy = Math.sin(a) * p.r * tilt;
+      const gy = Math.sin(a) * p.r;
 
       // ✳ girando devagar
       const sx = p.tx * cosR - p.ty * sinR;
