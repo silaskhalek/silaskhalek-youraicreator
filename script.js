@@ -345,6 +345,29 @@ personaTabs.forEach((tab) => {
 });
 
 /* ==========================================================================
+   Regras: mini terminais que digitam ao aparecer na tela
+   ========================================================================== */
+document.querySelectorAll("[data-mini]").forEach((mini, i) => {
+  if (reduceMotion) return;
+  const typed = mini.querySelector(".mini__typed");
+  const text = typed.textContent;
+  typed.textContent = "";
+  mini.classList.add("is-armed");
+
+  (window.preloaderDone || Promise.resolve()).then(() =>
+    whenVisible(mini, async () => {
+      await new Promise((r) => setTimeout(r, 250 + i * 450));
+      for (const char of text) {
+        typed.textContent += char;
+        await new Promise((r) => setTimeout(r, 26 + Math.random() * 30));
+      }
+      await new Promise((r) => setTimeout(r, 250));
+      mini.classList.add("is-done");
+    })
+  );
+});
+
+/* ==========================================================================
    Lista de espera
    ========================================================================== */
 const form = document.getElementById("waitlist");

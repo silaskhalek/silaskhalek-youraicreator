@@ -839,7 +839,7 @@ h1, h2, h3 { font-family: var(--display); font-weight: 700; text-wrap: balance; 
   color: var(--accent);
 }
 
-/* Pilares */
+/* Regras: mini terminais */
 
 .pillars {
   display: grid;
@@ -847,28 +847,40 @@ h1, h2, h3 { font-family: var(--display); font-weight: 700; text-wrap: balance; 
   gap: 16px;
 }
 
-.pillar {
-  padding: 32px 28px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: var(--surface);
-  transition: border-color 0.3s, transform 0.3s var(--ease);
-}
-.pillar:hover { border-color: rgba(124, 58, 237, 0.4); transform: translateY(-4px); }
+.mini { transition: transform 0.3s var(--ease); }
+.mini:hover { transform: translateY(-4px); }
 
-.pillar__icon {
-  display: inline-grid;
-  place-items: center;
-  width: 46px;
-  height: 46px;
-  margin-bottom: 24px;
-  border-radius: 12px;
-  background: var(--accent-soft);
-  color: var(--accent);
-  font-size: 20px;
+.mini__body {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-height: 232px;
+  padding: 20px 22px 26px;
 }
-.pillar h3 { margin: 0 0 8px; font-size: 22px; letter-spacing: -0.02em; font-weight: 600; }
-.pillar p { margin: 0; color: var(--muted); }
+
+.mini__cmd {
+  margin: 0;
+  min-height: 3.2em;
+  font-family: var(--mono);
+  font-size: 13.5px;
+  line-height: 1.6;
+}
+.mini.is-done .term__caret { opacity: 0; animation: none; }
+
+.mini__out h3 {
+  margin: 0 0 8px;
+  font-size: 21px;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+  color: var(--term-text);
+}
+.mini__out h3 span { color: var(--term-accent); margin-right: 4px; }
+.mini__out p { margin: 0; font-size: 15px; color: #a9a49c; }
+
+/* Com JS: a resposta só aparece depois do comando digitado */
+.mini.is-armed .mini__out { opacity: 0; transform: translateY(6px); }
+.mini .mini__out { transition: opacity 0.5s var(--ease), transform 0.5s var(--ease); }
+.mini.is-done .mini__out { opacity: 1; transform: none; }
 
 /* Sobre */
 
@@ -1180,6 +1192,8 @@ h1, h2, h3 { font-family: var(--display); font-weight: 700; text-wrap: balance; 
   .hero__float-site { width: 150px; left: -8px; }
   .term__body, .term--lg .term__body { min-height: 280px; padding: 18px 16px 20px; font-size: 12.5px; }
   .steps { grid-template-columns: 1fr; }
+  .mini__body { min-height: 0; }
+  .mini__cmd { min-height: 0; }
   .persona__tab { flex: 0 0 auto; padding: 11px 14px; font-size: 14px; }
   .persona__cmd code { font-size: 13px; }
   .roadmap__item { grid-template-columns: 44px 1fr; gap: 16px; }
