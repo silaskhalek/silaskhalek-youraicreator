@@ -213,7 +213,7 @@ if (heroEl) {
     } catch { /* cancelado */ }
   };
   hero.show(SCENARIOS[0]);
-  whenVisible(heroEl, loop);
+  (window.preloaderDone || Promise.resolve()).then(() => whenVisible(heroEl, loop));
 }
 
 // Terminal do método: abas escolhem o comando

@@ -15,8 +15,24 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <script>
+    // Marca o carregamento antes da primeira pintura (evita piscar o site antes do preloader)
+    document.documentElement.classList.replace("no-js", "is-loading");
+    try { if (sessionStorage.getItem("sk-intro")) document.documentElement.classList.add("intro-seen"); } catch (e) {}
+  </script>
 </head>
 <body>
+  <!-- PRELOADER -->
+  <div class="preloader" aria-hidden="true">
+    <canvas class="preloader__canvas"></canvas>
+    <div class="preloader__brand">
+      <span class="preloader__name">Silas Khalek</span>
+      <span class="preloader__tag">your ai creator</span>
+    </div>
+    <p class="preloader__status"><span class="preloader__prompt">&gt;</span> <span class="preloader__msg">acordando a IA</span><span class="preloader__caret"></span></p>
+    <p class="preloader__count"><span class="preloader__num">0</span><span class="preloader__pct">%</span></p>
+    <p class="preloader__skip">clique pra pular</p>
+  </div>
   <a class="skip" href="#conteudo">Pular para o conteúdo</a>
 
   <header class="nav" id="topo">
@@ -453,6 +469,7 @@
     </div>
   </footer>
 
+  <script src="preloader.js" defer></script>
   <script src="script.js" defer></script>
 </body>
 </html>

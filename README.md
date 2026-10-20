@@ -32,3 +32,7 @@ A foto da seção "Sobre" fica em `assets/silas.jpg` (4:5, 960×1200). Para troc
 ## Publicar
 
 Funciona direto na Vercel, Netlify ou GitHub Pages: é só apontar para a raiz do repositório, sem comando de build.
+
+## Preloader
+
+A abertura com a galáxia fica em `preloader.js`. Na primeira visita da sessão ela dura cerca de 4 segundos; nas seguintes, uma versão curta. Um clique pula a animação, e quem usa "reduzir movimento" no sistema não vê a abertura.
