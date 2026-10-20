@@ -22,8 +22,8 @@ Sem `formEndpoint` nem `whatsapp`, o formulário mostra erro ao enviar.
 ## Comandos dos terminais
 
 Os pedidos que aparecem digitando nos terminais ficam na lista `SCENARIOS` em `script.js`
-(pasta, comando, etapas e resultado). A ordem bate com as abas da seção "O método":
-Vídeo, Site, Imagem e Roteiro.
+(ferramenta, pasta, comando, etapas e resultado). A ordem bate com as abas da seção "O método":
+Claude, ChatGPT, Gemini e Higgsfield.
 
 ## Foto
 

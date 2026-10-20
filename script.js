@@ -19,44 +19,48 @@ const CONFIG = {
    ========================================================================== */
 const SCENARIOS = [
   {
-    path: "~/videos/live-sabado",
-    cmd: "Pega a live de sábado, encontra os 3 momentos mais fortes e transforma cada um num vídeo vertical com legenda no meu estilo.",
+    app: "claude",
+    path: "~/conteudo",
+    cmd: "Usa a minha skill de roteiro e escreve 5 roteiros de reels sobre IA pra quem está começando, com gancho forte nos 3 primeiros segundos.",
     steps: [
-      "Lê a transcrição e marca os trechos com mais energia",
-      "Reenquadra pro vertical acompanhando o rosto",
-      "Aplica a sua legenda e exporta os três",
-    ],
-    done: "✓ 3 vídeos prontos em ~/videos/live-sabado/cortes",
-  },
-  {
-    path: "~/sites/meu-curso",
-    cmd: "Cria uma landing page pro meu curso com a minha identidade visual e um formulário de lista de espera.",
-    steps: [
-      "Lê a paleta e as fontes da sua marca",
-      "Escreve a copy e monta as seções",
-      "Publica e gera o link",
-    ],
-    done: "✓ site no ar · meucurso.vercel.app",
-  },
-  {
-    path: "~/posts/amanha",
-    cmd: "Gera 3 capas pro post de amanhã no meu estilo, formato 4:5, com o título em destaque.",
-    steps: [
-      "Analisa as suas capas com mais alcance",
-      "Gera variações no seu estilo",
-      "Exporta em 1080×1350",
-    ],
-    done: "✓ 3 imagens salvas em ~/posts/amanha",
-  },
-  {
-    path: "~/roteiros",
-    cmd: "Escreve 5 roteiros de reels sobre IA pra quem está começando, com gancho forte nos 3 primeiros segundos.",
-    steps: [
-      "Levanta as dúvidas mais comuns do público",
+      "Carrega a skill roteiro-no-meu-tom",
       "Estrutura gancho, conteúdo e chamada",
       "Salva tudo em roteiros.md",
     ],
-    done: "✓ roteiros.md · 5 roteiros prontos pra gravar",
+    done: "✓ roteiros.md · 5 roteiros no seu tom",
+  },
+  {
+    app: "chatgpt",
+    path: "ensaio-produto",
+    cmd: "Coloca esse tênis numa calçada molhada à noite, com neon roxo refletindo no chão e fundo desfocado, formato 4:5.",
+    steps: [
+      "Isola o produto mantendo os detalhes",
+      "Monta o cenário e a iluminação",
+      "Gera a imagem final em 4:5",
+    ],
+    done: "✓ tenis_neon.png · 1080×1350 · pronta pro feed",
+  },
+  {
+    app: "gemini",
+    path: "pesquisa",
+    cmd: "Assiste esse vídeo do YouTube de 40 minutos e me diz os 5 momentos que dariam os melhores cortes, com a minutagem.",
+    steps: [
+      "Assiste e transcreve o vídeo",
+      "Encontra os trechos com mais impacto",
+      "Lista os 5 com início e fim",
+    ],
+    done: "✓ 5 cortes sugeridos com minutagem",
+  },
+  {
+    app: "higgsfield",
+    path: "cena-01",
+    cmd: "Plano cinematográfico de uma mulher andando na chuva em Tóquio à noite, câmera acompanhando de lado, luz de neon, 8 segundos.",
+    steps: [
+      "Monta personagem, cenário e luz",
+      "Aplica o movimento de câmera",
+      "Gera o vídeo em alta qualidade",
+    ],
+    done: "✓ cena_01.mp4 · 8s · ultrarrealista",
   },
 ];
 
@@ -132,7 +136,7 @@ class Terminal {
   }
 
   reset(s) {
-    this.path.textContent = `claude · ${s.path}`;
+    this.path.textContent = `${s.app} · ${s.path}`;
     this.typed.textContent = "";
     this.done.textContent = s.done;
     this.done.classList.remove("is-shown");
