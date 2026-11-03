@@ -80,6 +80,14 @@ document.querySelectorAll('[data-link="instagram"]').forEach((el) => {
   }
 });
 
+// Botões que abrem o WhatsApp com uma mensagem pronta
+document.querySelectorAll("[data-wa]").forEach((el) => {
+  if (!CONFIG.whatsapp) return;
+  el.href = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(el.dataset.wa)}`;
+  el.target = "_blank";
+  el.rel = "noopener";
+});
+
 // Borda da navegação ao rolar
 const nav = document.querySelector(".nav");
 const onScroll = () => nav.classList.toggle("is-scrolled", window.scrollY > 8);
@@ -287,9 +295,6 @@ const fillEls = [...document.querySelectorAll("[data-fill]")].map((el) => {
   return { el, words: [...el.querySelectorAll(".w")] };
 });
 
-const roadmap = document.querySelector("[data-roadmap]");
-const roadmapItems = roadmap ? [...roadmap.querySelectorAll(".roadmap__item")] : [];
-
 // 0 quando o topo do elemento chega em `start` da tela, 1 quando o fim chega em `end`
 const scrollProgress = (el, start, end) => {
   const r = el.getBoundingClientRect();
@@ -303,17 +308,6 @@ const updateScroll = () => {
     const lit = reduceMotion ? words.length : Math.round(scrollProgress(el, 0.85, 0.45) * words.length);
     words.forEach((w, i) => w.classList.toggle("is-lit", i < lit));
   });
-
-  if (roadmap) {
-    const p = reduceMotion ? 1 : scrollProgress(roadmap, 0.6, 0.6);
-    roadmap.style.setProperty("--fill", p.toFixed(3));
-    const line = roadmap.getBoundingClientRect();
-    roadmapItems.forEach((item) => {
-      const dot = item.querySelector(".roadmap__num").getBoundingClientRect();
-      const reached = (dot.top + dot.height / 2 - line.top) / line.height <= p + 0.02;
-      item.classList.toggle("is-reached", reached);
-    });
-  }
 };
 
 let ticking = false;
