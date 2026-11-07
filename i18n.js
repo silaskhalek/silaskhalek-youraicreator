@@ -29,14 +29,9 @@
       "Data scientist, 2× Google certified. I use AI every day and I'll show you how to do the same.",
 
     // Faixa e números
-    "certificado pelo Google": "Google certified",
-    "Formação reconhecida em IA e dados.": "Recognized training in AI and data.",
-    "IAs no dia a dia": "AIs in daily use",
-    "Claude, ChatGPT, Gemini e Higgsfield.": "Claude, ChatGPT, Gemini and Higgsfield.",
-    "projetos sob medida": "custom-made projects",
-    "Feito pro seu negócio, não copiado de outro.": "Built for your business, not copied from someone else's.",
-    "consultoria individual": "one-on-one consulting",
-    "Só você e eu, olhando pro seu caso.": "Just you and me, looking at your case.",
+    "Cientista de dados": "Data scientist",
+    "2× certificado pelo Google": "2× Google certified",
+    "Consultoria 1:1": "1:1 consulting",
 
     // 01 · O ponto
     "01 · O ponto": "01 · The point",
@@ -235,7 +230,7 @@
     "Silas Khalek, início": "Silas Khalek, home",
     "Principal": "Main",
     "Rodapé": "Footer",
-    "Em números": "In numbers",
+    "Credenciais": "Credentials",
     "Exemplos de comandos": "Command examples",
     "Perfis": "Profiles",
     "Idioma": "Language",

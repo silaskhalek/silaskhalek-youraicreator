@@ -435,27 +435,6 @@ document.querySelectorAll("[data-mini]").forEach((mini, i) => {
 });
 
 /* ==========================================================================
-   Números que sobem quando aparecem na tela
-   ========================================================================== */
-document.querySelectorAll("[data-count]").forEach((el) => {
-  const target = Number(el.dataset.count);
-  if (reduceMotion) return;
-  el.textContent = "0";
-  (window.preloaderDone || Promise.resolve()).then(() =>
-    whenVisible(el, () => {
-      const start = performance.now();
-      const DURATION = 1400;
-      const tick = (now) => {
-        const t = Math.min(1, (now - start) / DURATION);
-        el.textContent = Math.round(target * (1 - Math.pow(1 - t, 3)));
-        if (t < 1) requestAnimationFrame(tick);
-      };
-      requestAnimationFrame(tick);
-    })
-  );
-});
-
-/* ==========================================================================
    Estratégia: o rei sobe e cresce com a rolagem (GSAP + ScrollTrigger)
    ========================================================================== */
 const king = document.querySelector("[data-king]");
