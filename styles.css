@@ -431,8 +431,9 @@ h1, h2, h3 { font-family: var(--display); font-weight: 700; text-wrap: balance; 
 
 .hero__title {
   margin: 0;
+  max-width: 11ch;
   font-size: clamp(40px, 5.2vw, 76px);
-  line-height: 0.94;
+  line-height: 1.02;
   letter-spacing: -0.04em;
   font-weight: 800;
   text-transform: uppercase;
