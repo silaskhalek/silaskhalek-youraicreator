@@ -1239,7 +1239,7 @@ h1, h2, h3 { font-family: var(--display); font-weight: 500; text-wrap: balance; 
 }
 
 .closing__photo { display: block; width: min(560px, 100%); margin-top: clamp(16px, 3vw, 32px); }
-.closing__photo img {
+.closing__photo video {
   display: block;
   width: 100%;
   height: auto;
@@ -1265,7 +1265,7 @@ h1, h2, h3 { font-family: var(--display); font-weight: 500; text-wrap: balance; 
   .closing__text { grid-column: 1; grid-row: 3; }
   .closing__cta { grid-column: 1; grid-row: 4; justify-self: start; margin-top: 32px; }
   .closing__photo { grid-column: 2; grid-row: 1 / -1; width: auto; margin: 0; }
-  .closing__photo img { width: auto; height: min(82vh, 760px); }
+  .closing__photo video { width: auto; height: min(82vh, 760px); }
 }
 
 /* Rodapé */

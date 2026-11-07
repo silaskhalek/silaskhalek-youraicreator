@@ -502,6 +502,32 @@ if (king && window.gsap && window.ScrollTrigger && !reduceMotion) {
 }
 
 /* ==========================================================================
+   Fechamento: vídeo do logo na mão toca só quando está na tela
+   ========================================================================== */
+const closingVideo = document.querySelector("[data-closing-video]");
+if (closingVideo && !reduceMotion && "IntersectionObserver" in window) {
+  new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) closingVideo.play().catch(() => {});
+      else closingVideo.pause();
+    },
+    { rootMargin: "200px 0px" }
+  ).observe(closingVideo);
+
+  // Entra com um zoom suave
+  if (window.gsap && window.ScrollTrigger) {
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.from(closingVideo, {
+      scale: 0.88,
+      opacity: 0,
+      duration: 1.4,
+      ease: "power3.out",
+      scrollTrigger: { trigger: closingVideo, start: "top 85%" },
+    });
+  }
+}
+
+/* ==========================================================================
    Lista de espera
    ========================================================================== */
 const form = document.getElementById("waitlist");
