@@ -398,7 +398,7 @@ h1, h2, h3 { font-family: var(--display); font-weight: 700; text-wrap: balance; 
   height: 100%;
   width: auto;
   max-width: none;
-  transform: translateX(-26%);
+  transform: translateX(-16%);
   -webkit-mask-image: linear-gradient(to top, transparent 0, #000 22%), linear-gradient(to right, transparent 0, #000 28%, #000 80%, transparent 100%);
   -webkit-mask-composite: source-in;
   mask-image: linear-gradient(to top, transparent 0, #000 22%), linear-gradient(to right, transparent 0, #000 28%, #000 80%, transparent 100%);
@@ -418,7 +418,7 @@ h1, h2, h3 { font-family: var(--display); font-weight: 700; text-wrap: balance; 
   position: relative;
   z-index: 2;
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
+  grid-template-columns: 1.35fr 0.65fr;
   gap: 40px;
   min-height: calc(min(100svh, 940px) - 64px);
   padding-top: clamp(72px, 12vh, 140px);
@@ -431,8 +431,8 @@ h1, h2, h3 { font-family: var(--display); font-weight: 700; text-wrap: balance; 
 
 .hero__title {
   margin: 0;
-  font-size: clamp(44px, 6.2vw, 92px);
-  line-height: 0.92;
+  font-size: clamp(40px, 5.2vw, 76px);
+  line-height: 0.94;
   letter-spacing: -0.04em;
   font-weight: 800;
   text-transform: uppercase;
