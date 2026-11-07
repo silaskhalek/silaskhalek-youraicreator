@@ -11,7 +11,6 @@
     "Pular para o conteúdo": "Skip to content",
     "Consultoria e serviços": "Consulting & services",
     "Método": "Method",
-    "Curso": "Course",
     "Dúvidas": "FAQ",
     "Falar comigo": "Talk to me",
 
@@ -176,28 +175,8 @@
     "Sem surpresa": "No surprises",
     "Escopo, prazo e valor claros antes de começar. Você sabe exatamente o que vai receber.": "Clear scope, timeline and price before we start. You know exactly what you'll get.",
 
-    // 07 · Curso
-    "07 · Em breve": "07 · Coming soon",
-    "O curso": "The course",
-    "tá vindo": "is coming",
-    "Pra quem prefere aprender no próprio ritmo. Quatro módulos direto ao ponto, e quem entra na lista fica sabendo primeiro quando abrir.":
-      "For those who'd rather learn at their own pace. Four straight-to-the-point modules, and people on the list hear first when it opens.",
-    "Claude, ChatGPT e Gemini: qual usar e como": "Claude, ChatGPT and Gemini: which to use and how",
-    "Skills do Claude": "Claude Skills",
-    "comandos de edição de foto no ChatGPT": "photo editing commands for ChatGPT",
-    "Vídeos ultrarrealistas no Higgsfield": "Ultra-realistic videos with Higgsfield",
-    "lista-de-espera": "waitlist",
-    "Seu nome": "Your name",
-    "Seu e-mail": "Your email",
-    "(opcional)": "(optional)",
-    "Quero entrar na lista": "Join the waitlist",
-    "Sem spam. Você pode sair da lista quando quiser.": "No spam. You can leave the list anytime.",
-    "Preencha seu nome e um e-mail válido.": "Please enter your name and a valid email.",
-    "Enviando…": "Sending…",
-    "Não deu pra enviar agora. Tenta de novo em instantes.": "Couldn't send right now. Please try again in a moment.",
-
-    // 08 · Dúvidas
-    "08 · Dúvidas": "08 · FAQ",
+    // 07 · Dúvidas
+    "07 · Dúvidas": "07 · FAQ",
     "Perguntas": "Frequently asked",
     "frequentes": "questions",
     "Como funciona a consultoria?": "How does consulting work?",
@@ -215,9 +194,6 @@
     "Preciso saber programar ou entender de IA?": "Do I need to code or understand AI?",
     "Não. A consultoria parte do ponto em que você está, em português e sem jargão. Nos serviços, a parte técnica fica toda com a gente.":
       "No. Consulting starts from where you are, in plain language and without jargon. With services, the technical side is all on us.",
-    "E o curso?": "What about the course?",
-    "Está em produção. Entra na lista de espera que eu te aviso quando abrir.":
-      "It's in production. Join the waitlist and I'll let you know when it opens.",
 
     // Fechamento e rodapé
     "A próxima ideia não precisa": "Your next idea doesn't have to",
@@ -237,9 +213,6 @@
     "Silas Khalek de óculos escuros, sorrindo, com luz roxa ao fundo":
       "Silas Khalek wearing sunglasses, smiling, with purple light behind him",
     "Logo SK flutuando em luz roxa sobre a palma de uma mão": "SK logo floating in purple light above an open hand",
-    "Como posso te chamar?": "What should I call you?",
-    "voce@email.com": "you@email.com",
-    "(11) 99999-9999": "+1 (555) 000-0000",
     "Oi, Silas! Vim pelo site e quero conversar sobre consultoria ou serviços.":
       "Hi Silas! I found your website and I'd like to talk about consulting or services.",
     "Oi, Silas! Vim pelo site e quero saber mais sobre a consultoria.":

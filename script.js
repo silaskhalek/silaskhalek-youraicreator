@@ -1,16 +1,12 @@
 /* ==========================================================================
-   Configuração: edite aqui seus links e o destino da lista de espera.
+   Configuração: edite aqui seus links.
    ========================================================================== */
 const CONFIG = {
   // Seu @ do Instagram, sem o "@" (ex.: "silaskhalek"). Vazio esconde os links.
   instagram: "silas.khalek",
 
-  // URL que recebe os cadastros da lista de espera (ex.: endpoint do Formspree,
-  // "https://formspree.io/f/xxxxxxx"). Recebe nome, email e whatsapp via POST.
-  formEndpoint: "",
-
-  // Alternativa sem backend: número do WhatsApp com DDI e DDD, só dígitos
-  // (ex.: "5511999999999"). Usado apenas se formEndpoint estiver vazio.
+  // Número do WhatsApp com DDI e DDD, só dígitos (ex.: "5511999999999").
+  // Os botões de contato abrem uma conversa com mensagem pronta.
   whatsapp: "5511960965638",
 };
 
@@ -505,71 +501,3 @@ if (closingVideo && !reduceMotion && "IntersectionObserver" in window) {
     });
   }
 }
-
-/* ==========================================================================
-   Lista de espera
-   ========================================================================== */
-const form = document.getElementById("waitlist");
-const statusEl = form.querySelector(".form__status");
-
-const setStatus = (msg, type) => {
-  statusEl.textContent = msg;
-  statusEl.className = `form__status ${type ? `is-${type}` : ""}`;
-};
-
-const isEmail = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
-
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
-
-  const nome = form.nome.value.trim();
-  const email = form.email.value.trim();
-  const whatsapp = form.whatsapp.value.trim();
-
-  form.nome.setAttribute("aria-invalid", String(!nome));
-  form.email.setAttribute("aria-invalid", String(!isEmail(email)));
-
-  if (!nome || !isEmail(email)) {
-    setStatus(t("Preencha seu nome e um e-mail válido."), "error");
-    (!nome ? form.nome : form.email).focus();
-    return;
-  }
-
-  const button = form.querySelector("button");
-  button.disabled = true;
-  setStatus(t("Enviando…"));
-
-  try {
-    if (CONFIG.formEndpoint) {
-      const res = await fetch(CONFIG.formEndpoint, {
-        method: "POST",
-        headers: { Accept: "application/json", "Content-Type": "application/json" },
-        body: JSON.stringify({ nome, email, whatsapp }),
-      });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    } else if (CONFIG.whatsapp) {
-      const msg = isEN()
-        ? `Hi Silas! I'd like to join the course waitlist.\nName: ${nome}\nEmail: ${email}`
-        : `Oi, Silas! Quero entrar na lista de espera do curso.\nNome: ${nome}\nE-mail: ${email}`;
-      window.open(`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`, "_blank", "noopener");
-    } else {
-      throw new Error("Nenhum destino configurado em CONFIG (formEndpoint ou whatsapp).");
-    }
-
-    form.classList.add("is-done");
-    const primeiroNome = nome.split(" ")[0];
-    const ok = isEN()
-      ? CONFIG.formEndpoint
-        ? `Done, ${primeiroNome}! You're on the list. Keep an eye on your inbox.`
-        : `Almost there, ${primeiroNome}! We opened WhatsApp: just send the message to save your spot.`
-      : CONFIG.formEndpoint
-        ? `Pronto, ${primeiroNome}! Você está na lista. Fica de olho no seu e-mail.`
-        : `Quase lá, ${primeiroNome}! Abrimos o WhatsApp: é só enviar a mensagem pra garantir seu lugar.`;
-    setStatus(ok, "ok");
-  } catch (err) {
-    console.error(err);
-    setStatus(t("Não deu pra enviar agora. Tenta de novo em instantes."), "error");
-  } finally {
-    button.disabled = false;
-  }
-});

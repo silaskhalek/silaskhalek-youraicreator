@@ -1,6 +1,6 @@
 # Silas Khalek · Your AI Creator
 
-Site pessoal e página de lista de espera do curso de criação com IA.
+Site pessoal do Silas Khalek: consultoria de IA e serviços personalizados com a equipe BLDRX.
 
 Site estático (HTML + CSS + JS puro), sem build. Para ver localmente:
 
@@ -14,10 +14,7 @@ python3 -m http.server 8000
 Edite o objeto `CONFIG` no topo de `script.js`:
 
 - `instagram`: seu @ sem o "@". Vazio esconde os links do Instagram.
-- `formEndpoint`: URL que recebe os cadastros da lista de espera (ex.: um formulário do [Formspree](https://formspree.io)). Recebe `nome`, `email` e `whatsapp` em JSON.
-- `whatsapp`: alternativa sem backend; número com DDI e DDD (ex.: `5511999999999`). O cadastro abre uma conversa no WhatsApp com os dados preenchidos.
-
-Sem `formEndpoint` nem `whatsapp`, o formulário mostra erro ao enviar.
+- `whatsapp`: número com DDI e DDD (ex.: `5511999999999`). Os botões de contato abrem uma conversa no WhatsApp com a mensagem pronta.
 
 ## Comandos dos terminais
 
