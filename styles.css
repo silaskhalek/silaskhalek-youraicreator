@@ -1121,6 +1121,24 @@ h1, h2, h3 { font-family: var(--display); font-weight: 500; text-wrap: balance; 
 
 .closing__cta { position: relative; z-index: 1; margin-top: -40px; }
 
+/* Computador: texto à esquerda, foto à direita, tudo cabendo na tela */
+@media (min-width: 1001px) {
+  .closing { padding: clamp(40px, 6vh, 72px) 0; }
+  .closing__inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: 1fr auto auto 1fr;
+    column-gap: clamp(40px, 6vw, 96px);
+    align-items: start;
+    text-align: left;
+  }
+  .closing__title { grid-column: 1; grid-row: 2; }
+  .closing__text { grid-column: 1; grid-row: 3; }
+  .closing__cta { grid-column: 1; grid-row: 4; justify-self: start; margin-top: 32px; }
+  .closing__photo { grid-column: 2; grid-row: 1 / -1; width: auto; margin: 0; }
+  .closing__photo img { width: auto; height: min(82vh, 760px); }
+}
+
 /* Rodapé */
 
 .footer { padding: 40px 0; border-top: 1px solid var(--line); }
