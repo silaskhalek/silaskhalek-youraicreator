@@ -43,3 +43,7 @@ O logo SK fica em `assets/logo-sk.svg` e também dentro do `index.html` (no `<sy
 O botão com as bandeiras no menu troca o site entre português e inglês, e a escolha fica salva no navegador da pessoa. O site abre em português por padrão.
 
 As traduções ficam em `i18n.js`, num dicionário "texto em português → texto em inglês". Ao mudar ou incluir um texto no `index.html`, adicione a tradução lá também; o que não estiver no dicionário continua em português. Os comandos dos terminais em inglês ficam em `SCENARIOS_EN`, no `script.js`.
+
+## Prévia de compartilhamento
+
+A imagem que aparece ao mandar o link (`assets/og-image.jpg`, 1200×630) é um print do topo do site. Se o topo mudar, gere de novo e aumente o número em `?v=` nas tags `og:image` do `index.html`, pra o WhatsApp buscar a imagem nova.
