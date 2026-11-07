@@ -407,7 +407,12 @@ h1, h2, h3 { font-family: var(--display); font-weight: 500; text-wrap: balance; 
 .lang__btn.is-active { opacity: 1; background: #fff; box-shadow: 0 1px 4px rgba(22, 19, 15, 0.18); }
 
 .nav.is-over-hero .lang,
-.nav.is-over-dark .lang { border-color: rgba(255, 255, 255, 0.22); }
+.nav.is-over-dark .lang {
+  border-color: rgba(255, 255, 255, 0.22);
+  background: rgba(5, 2, 8, 0.55);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
 .nav.is-over-hero .lang__icon,
 .nav.is-over-dark .lang__icon { color: rgba(244, 241, 236, 0.8); }
 
@@ -1372,12 +1377,12 @@ h1, h2, h3 { font-family: var(--display); font-weight: 500; text-wrap: balance; 
   .hero__photo img {
     left: 0;
     width: 100%;
-    height: 72%;
-    top: 0;
+    height: calc(72% - 56px);
+    top: 72px;
     bottom: auto;
     transform: none;
     object-fit: cover;
-    object-position: 50% 18%;
+    object-position: 50% 12%;
     -webkit-mask-image: linear-gradient(to top, transparent 0, #000 40%);
     mask-image: linear-gradient(to top, transparent 0, #000 40%);
   }
