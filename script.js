@@ -158,7 +158,7 @@ const onScroll = () => {
   nav.classList.toggle("is-scrolled", window.scrollY > 8);
   // Navegação clara por cima dos blocos escuros: transparente no topo, escura no fechamento
   nav.classList.toggle("is-over-hero", isUnderNav(hero));
-  nav.classList.toggle("is-over-dark", isUnderNav(closing));
+  nav.classList.toggle("is-over-dark", isUnderNav(closing) || isUnderNav(document.querySelector("[data-king]")));
 };
 onScroll();
 window.addEventListener("scroll", onScroll, { passive: true });
@@ -454,6 +454,52 @@ document.querySelectorAll("[data-count]").forEach((el) => {
     })
   );
 });
+
+/* ==========================================================================
+   Estratégia: o rei sobe e cresce com a rolagem (GSAP + ScrollTrigger)
+   ========================================================================== */
+const king = document.querySelector("[data-king]");
+if (king && window.gsap && window.ScrollTrigger && !reduceMotion) {
+  gsap.registerPlugin(ScrollTrigger);
+  const photo = king.querySelector("[data-king-photo] img");
+  const sides = king.querySelectorAll("[data-king-side]");
+
+  // O rei sobe, cresce e gira de leve enquanto a seção passa pela tela
+  gsap.fromTo(
+    photo,
+    { y: 90, scale: 0.82, rotate: -3 },
+    {
+      y: -30,
+      scale: 1.04,
+      rotate: 0,
+      ease: "none",
+      scrollTrigger: { trigger: king, start: "top bottom", end: "bottom 30%", scrub: 0.6 },
+    }
+  );
+
+  // O brilho acompanha
+  gsap.fromTo(
+    king.querySelector(".king__glow"),
+    { scale: 0.6 },
+    { scale: 1.15, ease: "none", scrollTrigger: { trigger: king, start: "top bottom", end: "bottom top", scrub: true } }
+  );
+
+  // Os textos dos lados entram vindo de fora
+  sides.forEach((el) => {
+    const fromLeft = el.dataset.kingSide === "left";
+    gsap.from(el, {
+      x: window.innerWidth > 860 ? (fromLeft ? -60 : 60) : 0,
+      y: window.innerWidth > 860 ? 0 : 30,
+      opacity: 0,
+      duration: 1,
+      ease: "power3.out",
+      scrollTrigger: { trigger: el, start: "top 85%" },
+    });
+  });
+
+  // Recalcula depois que a abertura some (a página muda de altura)
+  (window.preloaderDone || Promise.resolve()).then(() => ScrollTrigger.refresh());
+}
 
 /* ==========================================================================
    Lista de espera

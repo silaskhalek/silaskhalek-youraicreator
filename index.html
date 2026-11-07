@@ -151,6 +151,23 @@
       </div>
     </section>
 
+    <!-- ESTRATÉGIA (rei do xadrez) -->
+    <section class="king" data-king>
+      <div class="king__glow" aria-hidden="true"></div>
+      <div class="wrap king__inner">
+        <h2 class="king__title reveal">IA sem estratégia<br />é só mais <em>um peão</em>.</h2>
+        <picture class="king__photo" data-king-photo>
+          <source media="(max-width: 700px)" srcset="assets/rei-sm.jpg" />
+          <img src="assets/rei.jpg" alt="Rei do xadrez de vidro roxo sobre uma rocha escura" width="1254" height="1254" loading="lazy" />
+        </picture>
+        <p class="king__left" data-king-side="left">Antes de abrir qualquer IA, eu penso na jogada certa pro seu negócio.</p>
+        <div class="king__right" data-king-side="right">
+          <p>Menos tentativa e erro.<br />Mais movimentos certos.</p>
+          <a href="#ofertas" class="btn btn--light" data-wa="Oi, Silas! Vim pelo site e quero conversar sobre consultoria ou serviços.">Falar comigo <span class="btn__icon" aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+
     <!-- OFERTAS -->
     <section class="section section--alt" id="ofertas">
       <div class="wrap">
@@ -500,6 +517,8 @@
     </div>
   </footer>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
   <script src="i18n.js" defer></script>
   <script src="preloader.js" defer></script>
   <script src="script.js" defer></script>

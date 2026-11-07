@@ -39,6 +39,16 @@
     // 01 · O ponto
     "01 · O ponto": "01 · The point",
 
+    // Estratégia (rei do xadrez)
+    "IA sem estratégia": "AI without strategy",
+    "é só mais": "is just another",
+    "um peão": "pawn",
+    "Antes de abrir qualquer IA, eu penso na jogada certa pro seu negócio.":
+      "Before opening any AI, I think through the right move for your business.",
+    "Menos tentativa e erro.": "Less trial and error.",
+    "Mais movimentos certos.": "More right moves.",
+    "Rei do xadrez de vidro roxo sobre uma rocha escura": "Purple glass chess king on a dark rock",
+
     // 02 · Ofertas
     "02 · Como eu posso te ajudar": "02 · How I can help",
     "Aprenda comigo": "Learn with me",

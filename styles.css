@@ -1111,6 +1111,96 @@ h1, h2, h3 { font-family: var(--display); font-weight: 500; text-wrap: balance; 
 .faq details[open] summary::after { transform: translateY(-50%) rotate(45deg); }
 .faq details p { margin: 0 0 22px; max-width: 620px; color: var(--muted); }
 
+/* Estratégia: bloco escuro com o rei do xadrez */
+
+.king {
+  position: relative;
+  margin: clamp(8px, 1.2vw, 16px);
+  padding: clamp(64px, 9vw, 112px) 0 clamp(40px, 6vw, 72px);
+  overflow: hidden;
+  border-radius: clamp(24px, 3vw, 40px);
+  background: #000;
+  color: #f4f1ec;
+}
+
+.king__glow {
+  position: absolute;
+  left: 50%;
+  top: 58%;
+  width: min(900px, 120vw);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(closest-side, rgba(124, 6, 251, 0.32), rgba(124, 6, 251, 0.08) 55%, transparent);
+  pointer-events: none;
+  animation: king-pulse 5s ease-in-out infinite;
+}
+@keyframes king-pulse {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
+.king__inner {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr minmax(280px, 520px) 1fr;
+  grid-template-areas:
+    "title title title"
+    "left  photo right";
+  align-items: center;
+  column-gap: clamp(24px, 4vw, 56px);
+}
+
+.king__title {
+  grid-area: title;
+  margin: 0 auto;
+  max-width: 760px;
+  text-align: center;
+  font-size: clamp(30px, 4.2vw, 56px);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+.king__title em { color: #c4a5ff; }
+
+.king__photo { grid-area: photo; display: block; }
+.king__photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  -webkit-mask-image: radial-gradient(62% 62% at 50% 52%, #000 62%, transparent 100%);
+  mask-image: radial-gradient(62% 62% at 50% 52%, #000 62%, transparent 100%);
+  will-change: transform;
+}
+
+.king__left,
+.king__right p {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.5;
+  color: rgba(244, 241, 236, 0.75);
+}
+.king__left { grid-area: left; max-width: 240px; justify-self: start; }
+.king__right { grid-area: right; justify-self: end; max-width: 260px; }
+.king__right .btn { margin-top: 18px; }
+
+@media (max-width: 860px) {
+  .king__inner {
+    grid-template-columns: 1fr;
+    grid-template-areas: "title" "photo" "left" "right";
+    justify-items: center;
+    text-align: center;
+  }
+  .king__photo { width: min(440px, 100%); margin: 8px 0; }
+  .king__left, .king__right { justify-self: center; max-width: 340px; }
+  .king__right { margin-top: 12px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .king__glow { animation: none; }
+}
+
 /* Fechamento: bloco escuro com o logo na mão */
 
 .closing {
