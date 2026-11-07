@@ -34,12 +34,9 @@
   // Primeira visita da sessão: versão completa. Depois: versão curta.
   const DURATION = root.classList.contains("intro-seen") ? 1300 : 3000;
   const EXIT = 1100;
-  const MESSAGES = [
-    [0, "acordando a IA"],
-    [0.3, "juntando as ideias"],
-    [0.6, "dando forma"],
-    [0.92, "pronto. bem-vindo"],
-  ];
+  const MESSAGES = root.lang === "en"
+    ? [[0, "waking up the AI"], [0.3, "gathering ideas"], [0.6, "taking shape"], [0.92, "ready. welcome"]]
+    : [[0, "acordando a IA"], [0.3, "juntando as ideias"], [0.6, "dando forma"], [0.92, "pronto. bem-vindo"]];
   const COLORS = ["#b794f6", "#8b5cf6", "#7c3aed", "#e9ddff", "#ffffff", "#c4b5fd"];
 
   const ease = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);

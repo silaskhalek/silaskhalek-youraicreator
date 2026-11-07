@@ -40,3 +40,9 @@ A abertura com a galáxia fica em `preloader.js`. Na primeira visita da sessão 
 ## Logo
 
 O logo SK fica em `assets/logo-sk.svg` e também dentro do `index.html` (no `<symbol id="sk-logo">`, usado no menu, no rodapé e na abertura, onde as partículas formam o logo). O ícone da aba é o `favicon.svg` e o do iPhone, `assets/apple-touch-icon.png`.
+
+## Idiomas (português e inglês)
+
+O botão com as bandeiras no menu troca o site entre português e inglês, e a escolha fica salva no navegador da pessoa. O site abre em português por padrão.
+
+As traduções ficam em `i18n.js`, num dicionário "texto em português → texto em inglês". Ao mudar ou incluir um texto no `index.html`, adicione a tradução lá também; o que não estiver no dicionário continua em português. Os comandos dos terminais em inglês ficam em `SCENARIOS_EN`, no `script.js`.

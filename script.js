@@ -17,7 +17,7 @@ const CONFIG = {
 /* ==========================================================================
    Comandos mostrados nos terminais. A ordem bate com as abas do método.
    ========================================================================== */
-const SCENARIOS = [
+const SCENARIOS_PT = [
   {
     app: "claude",
     path: "~/conteudo",
@@ -64,6 +64,58 @@ const SCENARIOS = [
   },
 ];
 
+const SCENARIOS_EN = [
+  {
+    app: "claude",
+    path: "~/content",
+    cmd: "Use my script skill and write 5 reel scripts about AI for beginners, with a strong hook in the first 3 seconds.",
+    steps: [
+      "Loads the script-in-my-tone skill",
+      "Structures hook, content and call to action",
+      "Saves everything to scripts.md",
+    ],
+    done: "✓ scripts.md · 5 scripts in your tone",
+  },
+  {
+    app: "chatgpt",
+    path: "product-shoot",
+    cmd: "Put this sneaker on a wet sidewalk at night, with purple neon reflecting on the ground and a blurred background, 4:5 format.",
+    steps: [
+      "Isolates the product, keeping the details",
+      "Builds the scene and the lighting",
+      "Generates the final image in 4:5",
+    ],
+    done: "✓ sneaker_neon.png · 1080×1350 · ready for the feed",
+  },
+  {
+    app: "gemini",
+    path: "research",
+    cmd: "Watch this 40-minute YouTube video and tell me the 5 moments that would make the best clips, with timestamps.",
+    steps: [
+      "Watches and transcribes the video",
+      "Finds the most impactful moments",
+      "Lists the 5 with start and end",
+    ],
+    done: "✓ 5 suggested clips with timestamps",
+  },
+  {
+    app: "higgsfield",
+    path: "scene-01",
+    cmd: "Cinematic shot of a woman walking in the rain in Tokyo at night, camera tracking from the side, neon light, 8 seconds.",
+    steps: [
+      "Sets up character, scene and lighting",
+      "Applies the camera movement",
+      "Generates the video in high quality",
+    ],
+    done: "✓ scene_01.mp4 · 8s · ultra-realistic",
+  },
+];
+
+// Idioma atual (o i18n.js troca entre português e inglês)
+const isEN = () => window.i18n?.lang === "en";
+const t = (pt) => (window.i18n ? window.i18n.t(pt) : pt);
+const scenarios = () => (isEN() ? SCENARIOS_EN : SCENARIOS_PT);
+
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 document.documentElement.classList.remove("no-js");
@@ -80,13 +132,17 @@ document.querySelectorAll('[data-link="instagram"]').forEach((el) => {
   }
 });
 
-// Botões que abrem o WhatsApp com uma mensagem pronta
-document.querySelectorAll("[data-wa]").forEach((el) => {
-  if (!CONFIG.whatsapp) return;
-  el.href = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(el.dataset.wa)}`;
-  el.target = "_blank";
-  el.rel = "noopener";
-});
+// Botões que abrem o WhatsApp com uma mensagem pronta (no idioma da página)
+const linkWhatsApp = () => {
+  document.querySelectorAll("[data-wa]").forEach((el) => {
+    if (!CONFIG.whatsapp) return;
+    el.href = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(el.dataset.wa)}`;
+    el.target = "_blank";
+    el.rel = "noopener";
+  });
+};
+linkWhatsApp();
+window.addEventListener("langchange", linkWhatsApp);
 
 // Borda da navegação ao rolar
 const nav = document.querySelector(".nav");
@@ -236,25 +292,26 @@ if (methodEl) {
       t.classList.toggle("is-active", i === index);
       t.setAttribute("aria-selected", String(i === index));
     });
-    method.play(SCENARIOS[index]).catch(() => {});
+    method.play(scenarios()[index]).catch(() => {});
   };
 
   tabs.forEach((tab, i) => tab.addEventListener("click", () => select(i)));
-  method.show(SCENARIOS[0]);
+  method.show(scenarios()[0]);
   whenVisible(methodEl, () => select(0));
+  window.addEventListener("langchange", () => method.show(scenarios()[current]));
 
   const copyBtn = document.querySelector("[data-copy]");
   const copyLabel = copyBtn.querySelector(".copy__label");
   copyBtn.addEventListener("click", async () => {
     try {
-      await navigator.clipboard.writeText(SCENARIOS[current].cmd);
-      copyLabel.textContent = "Copiado!";
+      await navigator.clipboard.writeText(scenarios()[current].cmd);
+      copyLabel.textContent = t("Copiado!");
       copyBtn.classList.add("is-copied");
     } catch {
-      copyLabel.textContent = "Não deu pra copiar";
+      copyLabel.textContent = t("Não deu pra copiar");
     }
     setTimeout(() => {
-      copyLabel.textContent = "Copiar comando";
+      copyLabel.textContent = t("Copiar comando");
       copyBtn.classList.remove("is-copied");
     }, 1800);
   });
@@ -288,6 +345,15 @@ const wrapWords = (node) => {
 const fillEls = [...document.querySelectorAll("[data-fill]")].map((el) => {
   wrapWords(el);
   return { el, words: [...el.querySelectorAll(".w")] };
+});
+
+// Ao trocar o idioma o texto é reescrito, então quebra em palavras de novo
+window.addEventListener("langchange", () => {
+  fillEls.forEach((f) => {
+    wrapWords(f.el);
+    f.words = [...f.el.querySelectorAll(".w")];
+  });
+  updateScroll();
 });
 
 // 0 quando o topo do elemento chega em `start` da tela, 1 quando o fim chega em `end`
@@ -348,14 +414,17 @@ personaTabs.forEach((tab) => {
 document.querySelectorAll("[data-mini]").forEach((mini, i) => {
   if (reduceMotion) return;
   const typed = mini.querySelector(".mini__typed");
-  const text = typed.textContent;
+  const original = typed.textContent;
   typed.textContent = "";
   mini.classList.add("is-armed");
+  window.addEventListener("langchange", () => {
+    if (mini.classList.contains("is-done")) typed.textContent = t(original);
+  });
 
   (window.preloaderDone || Promise.resolve()).then(() =>
     whenVisible(mini, async () => {
       await new Promise((r) => setTimeout(r, 250 + i * 450));
-      for (const char of text) {
+      for (const char of t(original)) {
         typed.textContent += char;
         await new Promise((r) => setTimeout(r, 26 + Math.random() * 30));
       }
@@ -410,14 +479,14 @@ form.addEventListener("submit", async (e) => {
   form.email.setAttribute("aria-invalid", String(!isEmail(email)));
 
   if (!nome || !isEmail(email)) {
-    setStatus("Preencha seu nome e um e-mail válido.", "error");
+    setStatus(t("Preencha seu nome e um e-mail válido."), "error");
     (!nome ? form.nome : form.email).focus();
     return;
   }
 
   const button = form.querySelector("button");
   button.disabled = true;
-  setStatus("Enviando…");
+  setStatus(t("Enviando…"));
 
   try {
     if (CONFIG.formEndpoint) {
@@ -428,7 +497,9 @@ form.addEventListener("submit", async (e) => {
       });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
     } else if (CONFIG.whatsapp) {
-      const msg = `Oi, Silas! Quero entrar na lista de espera do curso.\nNome: ${nome}\nE-mail: ${email}`;
+      const msg = isEN()
+        ? `Hi Silas! I'd like to join the course waitlist.\nName: ${nome}\nEmail: ${email}`
+        : `Oi, Silas! Quero entrar na lista de espera do curso.\nNome: ${nome}\nE-mail: ${email}`;
       window.open(`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`, "_blank", "noopener");
     } else {
       throw new Error("Nenhum destino configurado em CONFIG (formEndpoint ou whatsapp).");
@@ -436,15 +507,17 @@ form.addEventListener("submit", async (e) => {
 
     form.classList.add("is-done");
     const primeiroNome = nome.split(" ")[0];
-    setStatus(
-      CONFIG.formEndpoint
+    const ok = isEN()
+      ? CONFIG.formEndpoint
+        ? `Done, ${primeiroNome}! You're on the list. Keep an eye on your inbox.`
+        : `Almost there, ${primeiroNome}! We opened WhatsApp: just send the message to save your spot.`
+      : CONFIG.formEndpoint
         ? `Pronto, ${primeiroNome}! Você está na lista. Fica de olho no seu e-mail.`
-        : `Quase lá, ${primeiroNome}! Abrimos o WhatsApp: é só enviar a mensagem pra garantir seu lugar.`,
-      "ok"
-    );
+        : `Quase lá, ${primeiroNome}! Abrimos o WhatsApp: é só enviar a mensagem pra garantir seu lugar.`;
+    setStatus(ok, "ok");
   } catch (err) {
     console.error(err);
-    setStatus("Não deu pra enviar agora. Tenta de novo em instantes.", "error");
+    setStatus(t("Não deu pra enviar agora. Tenta de novo em instantes."), "error");
   } finally {
     button.disabled = false;
   }

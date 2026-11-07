@@ -377,6 +377,40 @@ h1, h2, h3 { font-family: var(--display); font-weight: 500; text-wrap: balance; 
 .nav__links a { transition: color 0.2s; }
 .nav__links a:hover { color: var(--text); }
 
+/* Seletor de idioma */
+.nav__actions { display: flex; align-items: center; gap: 12px; }
+
+.lang {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 3px 3px 3px 10px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+}
+.lang__icon { width: 17px; height: 17px; margin-right: 6px; color: var(--muted); }
+.lang__btn {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  opacity: 0.55;
+  transition: opacity 0.2s, background 0.2s, box-shadow 0.2s;
+}
+.lang__btn svg { width: 22px; height: 22px; display: block; }
+.lang__btn:hover { opacity: 0.9; }
+.lang__btn.is-active { opacity: 1; background: #fff; box-shadow: 0 1px 4px rgba(22, 19, 15, 0.18); }
+
+.nav.is-over-hero .lang,
+.nav.is-over-dark .lang { border-color: rgba(255, 255, 255, 0.22); }
+.nav.is-over-hero .lang__icon,
+.nav.is-over-dark .lang__icon { color: rgba(244, 241, 236, 0.8); }
+
 /* ---------- Hero ---------- */
 
 .hero {
@@ -1309,6 +1343,7 @@ h1, h2, h3 { font-family: var(--display); font-weight: 500; text-wrap: balance; 
 
 @media (max-width: 900px) {
   .nav__links, .logo__tag { display: none; }
+  .nav__actions { gap: 8px; }
   .pillars, .offers { grid-template-columns: 1fr; }
   .persona__panel { grid-template-columns: 1fr; }
   .persona__arrow { rotate: 90deg; width: 40px; height: 40px; font-size: 18px; }
@@ -1317,6 +1352,11 @@ h1, h2, h3 { font-family: var(--display); font-weight: 500; text-wrap: balance; 
 }
 
 @media (max-width: 560px) {
+  .lang { padding-left: 3px; }
+  .lang__icon { display: none; }
+  .lang__btn { width: 30px; height: 30px; }
+  .lang__btn svg { width: 20px; height: 20px; }
+  .nav .btn--small { padding: 9px 14px; font-size: 13px; }
   body { font-size: 16px; }
   .term__body, .term--lg .term__body { min-height: 280px; padding: 18px 16px 20px; font-size: 12.5px; }
   .steps { grid-template-columns: 1fr; }
