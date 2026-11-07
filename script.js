@@ -91,10 +91,18 @@ document.querySelectorAll("[data-wa]").forEach((el) => {
 // Borda da navegação ao rolar
 const nav = document.querySelector(".nav");
 const hero = document.querySelector("[data-hero]");
+const closing = document.querySelector(".closing");
+const isUnderNav = (block) => {
+  if (!block) return false;
+  const r = block.getBoundingClientRect();
+  const h = nav.offsetHeight / 2;
+  return r.top <= h && r.bottom > h;
+};
 const onScroll = () => {
   nav.classList.toggle("is-scrolled", window.scrollY > 8);
-  // Navegação clara enquanto está por cima do topo escuro
-  if (hero) nav.classList.toggle("is-over-hero", hero.getBoundingClientRect().bottom > nav.offsetHeight);
+  // Navegação clara por cima dos blocos escuros: transparente no topo, escura no fechamento
+  nav.classList.toggle("is-over-hero", isUnderNav(hero));
+  nav.classList.toggle("is-over-dark", isUnderNav(closing));
 };
 onScroll();
 window.addEventListener("scroll", onScroll, { passive: true });
