@@ -419,13 +419,18 @@ h1, h2, h3 { font-family: var(--display); font-weight: 500; text-wrap: balance; 
   z-index: 2;
   display: grid;
   grid-template-columns: 1.35fr 0.65fr;
-  gap: 40px;
+  grid-template-rows: 1fr auto auto;
+  grid-template-areas:
+    "copy ."
+    "ctas big"
+    ".    note";
+  column-gap: 40px;
   min-height: calc(min(100svh, 940px) - 64px);
   padding-top: clamp(72px, 12vh, 140px);
   padding-bottom: clamp(40px, 7vh, 72px);
 }
 
-.hero__copy { align-self: start; max-width: 620px; }
+.hero__copy { grid-area: copy; align-self: start; max-width: 620px; }
 
 .kicker--light { color: rgba(244, 241, 236, 0.7); }
 
@@ -447,18 +452,23 @@ h1, h2, h3 { font-family: var(--display); font-weight: 500; text-wrap: balance; 
   color: rgba(244, 241, 236, 0.75);
 }
 
+/* No computador os botões ficam embaixo, na linha do "Resultado, não hype." */
 .hero__ctas {
+  grid-area: ctas;
+  align-self: end;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 12px;
-  margin-top: 30px;
 }
 
-.hero__side { align-self: end; text-align: right; }
+.hero__side { display: contents; }
 
 .hero__big {
-  margin: 0 0 14px;
+  grid-area: big;
+  align-self: end;
+  text-align: right;
+  margin: 0;
   font-family: var(--display);
   font-size: clamp(30px, 3.4vw, 50px);
   font-weight: 400;
@@ -468,8 +478,11 @@ h1, h2, h3 { font-family: var(--display); font-weight: 500; text-wrap: balance; 
 }
 
 .hero__note {
+  grid-area: note;
+  justify-self: end;
+  text-align: right;
   max-width: 300px;
-  margin: 0 0 0 auto;
+  margin: 14px 0 0;
   font-size: 15px;
   font-weight: 300;
   color: rgba(244, 241, 236, 0.65);
@@ -1313,6 +1326,8 @@ h1, h2, h3 { font-family: var(--display); font-weight: 500; text-wrap: balance; 
   .hero__glow { background: linear-gradient(to top, #050208 30%, transparent 70%); }
   .hero__inner {
     grid-template-columns: 1fr;
+    grid-template-rows: none;
+    grid-template-areas: none;
     min-height: calc(100svh - 64px);
     align-content: end;
     gap: 28px;
@@ -1320,10 +1335,10 @@ h1, h2, h3 { font-family: var(--display); font-weight: 500; text-wrap: balance; 
     padding-bottom: 32px;
   }
   .hero__inner { justify-items: center; text-align: center; }
-  .hero__copy { max-width: none; }
+  .hero__copy, .hero__ctas { grid-area: auto; max-width: none; }
   .hero__side { display: none; }
   .hero__sub { margin: 18px auto 0; font-size: 15px; }
-  .hero__ctas { justify-content: center; margin-top: 22px; }
+  .hero__ctas { justify-content: center; margin-top: -6px; }
   .process { grid-template-columns: 1fr; gap: 28px; }
   .process__step { display: grid; grid-template-columns: 44px 1fr; column-gap: 18px; }
   .process__num { grid-row: span 2; }
