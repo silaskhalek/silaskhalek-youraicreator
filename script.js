@@ -90,7 +90,12 @@ document.querySelectorAll("[data-wa]").forEach((el) => {
 
 // Borda da navegação ao rolar
 const nav = document.querySelector(".nav");
-const onScroll = () => nav.classList.toggle("is-scrolled", window.scrollY > 8);
+const hero = document.querySelector("[data-hero]");
+const onScroll = () => {
+  nav.classList.toggle("is-scrolled", window.scrollY > 8);
+  // Navegação clara enquanto está por cima do topo escuro
+  if (hero) nav.classList.toggle("is-over-hero", hero.getBoundingClientRect().bottom > nav.offsetHeight);
+};
 onScroll();
 window.addEventListener("scroll", onScroll, { passive: true });
 
@@ -210,24 +215,6 @@ const whenVisible = (el, fn) => {
   io.observe(el);
 };
 
-// Terminal do topo: passa pelos comandos em loop
-const heroEl = document.querySelector('[data-term="hero"]');
-if (heroEl) {
-  const hero = new Terminal(heroEl);
-  let i = 0;
-  const loop = async () => {
-    try {
-      await hero.play(SCENARIOS[i]);
-      if (reduceMotion) return;
-      await hero.wait(3200, hero.run);
-      i = (i + 1) % SCENARIOS.length;
-      loop();
-    } catch { /* cancelado */ }
-  };
-  hero.show(SCENARIOS[0]);
-  (window.preloaderDone || Promise.resolve()).then(() => whenVisible(heroEl, loop));
-}
-
 // Terminal do método: abas escolhem o comando
 const methodEl = document.querySelector('[data-term="method"]');
 if (methodEl) {
@@ -303,11 +290,20 @@ const scrollProgress = (el, start, end) => {
   return Math.min(1, Math.max(0, (vh * start - r.top) / total));
 };
 
+const process = document.querySelector("[data-process]");
+const processSteps = process ? [...process.querySelectorAll(".process__step")] : [];
+
 const updateScroll = () => {
   fillEls.forEach(({ el, words }) => {
     const lit = reduceMotion ? words.length : Math.round(scrollProgress(el, 0.85, 0.45) * words.length);
     words.forEach((w, i) => w.classList.toggle("is-lit", i < lit));
   });
+
+  // Processo: as etapas acendem uma a uma conforme a rolagem
+  if (process) {
+    const on = reduceMotion ? processSteps.length : Math.max(1, Math.ceil(scrollProgress(process, 0.8, 0.4) * processSteps.length));
+    processSteps.forEach((step, i) => step.classList.toggle("is-active", i < on));
+  }
 };
 
 let ticking = false;
@@ -357,6 +353,27 @@ document.querySelectorAll("[data-mini]").forEach((mini, i) => {
       }
       await new Promise((r) => setTimeout(r, 250));
       mini.classList.add("is-done");
+    })
+  );
+});
+
+/* ==========================================================================
+   Números que sobem quando aparecem na tela
+   ========================================================================== */
+document.querySelectorAll("[data-count]").forEach((el) => {
+  const target = Number(el.dataset.count);
+  if (reduceMotion) return;
+  el.textContent = "0";
+  (window.preloaderDone || Promise.resolve()).then(() =>
+    whenVisible(el, () => {
+      const start = performance.now();
+      const DURATION = 1400;
+      const tick = (now) => {
+        const t = Math.min(1, (now - start) / DURATION);
+        el.textContent = Math.round(target * (1 - Math.pow(1 - t, 3)));
+        if (t < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
     })
   );
 });

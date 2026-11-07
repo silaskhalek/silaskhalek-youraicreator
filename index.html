@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#f6f2ea" />
+  <meta name="theme-color" content="#050208" />
   <title>Silas Khalek · Your AI Creator</title>
   <meta name="description" content="Consultoria de IA com Silas Khalek, cientista de dados certificado pelo Google, e serviços personalizados com a equipe BLDRX: landing pages, sites, apps, social media e vídeos com IA." />
   <link rel="canonical" href="https://silaskhalek.vercel.app/" />
@@ -29,6 +29,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="preload" as="image" href="assets/silas-hero.jpg" media="(min-width: 701px)" />
+  <link rel="preload" as="image" href="assets/silas-hero-sm.jpg" media="(max-width: 700px)" />
   <link rel="stylesheet" href="styles.css" />
   <script>
     // Marca o carregamento antes da primeira pintura (evita piscar o site antes do preloader)
@@ -70,70 +72,53 @@
 
   <main id="conteudo">
     <!-- HERO -->
-    <section class="hero">
+    <section class="hero" data-hero>
+      <picture class="hero__photo">
+        <source media="(max-width: 700px)" srcset="assets/silas-hero-sm.jpg" />
+        <img src="assets/silas-hero.jpg" alt="Silas Khalek de óculos escuros, sorrindo, com luz roxa ao fundo" width="1086" height="1448" fetchpriority="high" />
+      </picture>
+      <div class="hero__glow" aria-hidden="true"></div>
+
       <div class="wrap hero__inner">
         <div class="hero__copy">
-          <p class="kicker reveal"><span class="dot"></span> Consultoria e serviços com IA</p>
+          <p class="kicker kicker--light reveal"><span class="dot"></span> Consultoria e serviços com IA</p>
           <h1 class="hero__title reveal">
             Você tem as ideias.<br />
             <em>A IA, as mãos.</em>
           </h1>
           <p class="hero__sub reveal">
-            Consultoria comigo pra você usar Claude, ChatGPT, Gemini e Higgsfield do jeito certo,
-            ou a minha equipe construindo pra você. Sem jargão e sem precisar programar.
+            Consultoria comigo ou a minha equipe construindo pra você. Claude, ChatGPT, Gemini
+            e Higgsfield do jeito certo, sem jargão e sem precisar programar.
           </p>
-          <ul class="chips reveal" aria-label="Ferramentas abordadas">
-            <li>Claude</li>
-            <li>ChatGPT</li>
-            <li>Gemini</li>
-            <li>Higgsfield</li>
-          </ul>
           <div class="hero__ctas reveal">
             <a href="#ofertas" class="btn" data-wa="Oi, Silas! Vim pelo site e quero conversar sobre consultoria ou serviços.">Falar comigo no WhatsApp <span aria-hidden="true">→</span></a>
-            <a href="#ofertas" class="btn btn--ghost">Ver as opções</a>
+            <a href="#ofertas" class="btn btn--glass">Ver as opções</a>
           </div>
         </div>
 
-        <div class="hero__stage reveal" aria-hidden="true">
-          <!-- Janela flutuante: imagem gerada -->
-          <div class="win win--light float float--a hero__float-img">
-            <div class="win__bar"><i></i><i></i><i></i><span>capa_post.png</span></div>
-            <div class="art">
-              <span class="art__orb"></span>
-              <span class="art__title">crie<br /><em>com IA</em></span>
-            </div>
-          </div>
-
-          <!-- Janela flutuante: vídeo gerado -->
-          <div class="win win--light float float--b hero__float-site">
-            <div class="win__bar"><i></i><i></i><i></i><span>cena_01.mp4</span></div>
-            <div class="mini-video">
-              <span class="mini-video__play"></span>
-              <span class="mini-video__bar"><span></span></span>
-            </div>
-          </div>
-
-          <!-- Terminal principal -->
-          <div class="win term hero__term" data-term="hero">
-            <div class="win__bar"><i></i><i></i><i></i><span class="term__path">claude · ~/projetos</span></div>
-            <div class="term__body">
-              <p class="term__cmd"><span class="term__prompt">&gt;</span> <span class="term__typed"></span><span class="term__caret"></span></p>
-              <ol class="term__steps"></ol>
-              <div class="term__progress">
-                <div class="term__progress-head"><span>Progresso</span><span class="term__pct">0%</span></div>
-                <div class="term__bar"><span></span></div>
-              </div>
-              <p class="term__done"></p>
-            </div>
-          </div>
+        <div class="hero__side reveal">
+          <p class="hero__big">Sem jargão.<br />Sem enrolação.</p>
+          <p class="hero__note">Cientista de dados, 2× certificado pelo Google. Eu uso IA todo dia e te mostro como fazer o mesmo.</p>
         </div>
       </div>
+    </section>
 
+    <div class="marquee-wrap">
       <div class="marquee" aria-hidden="true">
         <div class="marquee__track">
           <span>Claude</span><span>✳</span><span>ChatGPT</span><span>✳</span><span>Gemini</span><span>✳</span><span>Higgsfield</span><span>✳</span><span>Skills</span><span>✳</span><span>Foto</span><span>✳</span><span>Vídeo</span><span>✳</span><span>Prompt</span><span>✳</span>
           <span>Claude</span><span>✳</span><span>ChatGPT</span><span>✳</span><span>Gemini</span><span>✳</span><span>Higgsfield</span><span>✳</span><span>Skills</span><span>✳</span><span>Foto</span><span>✳</span><span>Vídeo</span><span>✳</span><span>Prompt</span><span>✳</span>
         </div>
+      </div>
+    </div>
+
+    <!-- NÚMEROS -->
+    <section class="stats" aria-label="Em números">
+      <div class="wrap stats__grid">
+        <div class="stat reveal"><p class="stat__num"><span data-count="2">2</span>×</p><p class="stat__label">certificado pelo Google</p></div>
+        <div class="stat reveal"><p class="stat__num"><span data-count="4">4</span></p><p class="stat__label">IAs que eu uso todo dia</p></div>
+        <div class="stat reveal"><p class="stat__num"><span data-count="5">5</span></p><p class="stat__label">tipos de projeto com a equipe BLDRX</p></div>
+        <div class="stat reveal"><p class="stat__num"><span data-count="2">2</span></p><p class="stat__label">formatos de consultoria</p></div>
       </div>
     </section>
 
@@ -200,20 +185,34 @@
           </article>
         </div>
 
-        <ol class="flow">
-          <li class="reveal"><span>01</span>Você me chama no WhatsApp</li>
-          <li class="reveal"><span>02</span>A gente entende o que você precisa</li>
-          <li class="reveal"><span>03</span>Você recebe a proposta ou o horário</li>
+      </div>
+    </section>
+
+    <!-- PROCESSO -->
+    <section class="section" id="processo">
+      <div class="wrap">
+        <div class="section__head">
+          <p class="kicker reveal">03 · Como funciona</p>
+          <h2 class="h2 reveal">Da primeira mensagem <em>à entrega</em>.</h2>
+          <p class="lead reveal">Seja consultoria ou projeto com a equipe, o caminho é claro do começo ao fim.</p>
+        </div>
+        <ol class="process" data-process>
+          <li class="process__step"><span class="process__num">1</span><h3>Conversa</h3><p>Você me chama no WhatsApp e conta o que precisa. Sem formulário enorme.</p></li>
+          <li class="process__step"><span class="process__num">2</span><h3>Diagnóstico</h3><p>Eu entendo o seu momento e indico o caminho: consultoria, serviço da equipe ou os dois.</p></li>
+          <li class="process__step"><span class="process__num">3</span><h3>Proposta</h3><p>Você recebe escopo, prazo e valor por escrito, antes de fechar qualquer coisa.</p></li>
+          <li class="process__step"><span class="process__num">4</span><h3>Mão na massa</h3><p>Na consultoria, a gente faz junto. Nos serviços, a equipe BLDRX constrói e te mostra o andamento.</p></li>
+          <li class="process__step"><span class="process__num">5</span><h3>Ajustes</h3><p>Você revisa, aponta o que mudar e a gente refina até ficar do jeito certo.</p></li>
+          <li class="process__step"><span class="process__num">6</span><h3>Entrega</h3><p>Projeto no ar ou plano na mão, com tudo explicado pra você seguir com segurança.</p></li>
         </ol>
       </div>
     </section>
 
     <!-- MÉTODO -->
-    <section class="section" id="metodo">
+    <section class="section section--alt" id="metodo">
       <div class="wrap">
         <div class="method">
           <div class="method__copy">
-            <p class="kicker reveal">03 · O método</p>
+            <p class="kicker reveal">04 · O método</p>
             <h2 class="h2 reveal">Do pedido <em>ao pronto</em>.</h2>
             <p class="lead reveal">
               Você descreve o que quer como descreveria pra um amigo, na IA certa pra cada tarefa.
@@ -257,10 +256,10 @@
     </section>
 
     <!-- PRA QUEM É -->
-    <section class="section section--alt" id="pra-quem">
+    <section class="section" id="pra-quem">
       <div class="wrap">
         <div class="section__head">
-          <p class="kicker reveal">04 · Pra quem é</p>
+          <p class="kicker reveal">05 · Pra quem é</p>
           <h2 class="h2 reveal">Qual é <em>o seu caso</em>?</h2>
           <p class="lead reveal">Escolha o que mais parece com você e veja o que muda.</p>
         </div>
@@ -329,10 +328,10 @@
     </section>
 
     <!-- PILARES -->
-    <section class="section">
+    <section class="section section--alt">
       <div class="wrap">
         <div class="section__head">
-          <p class="kicker reveal">05 · Do meu jeito</p>
+          <p class="kicker reveal">06 · Do meu jeito</p>
           <h2 class="h2 reveal">Três regras que <em>guiam meu trabalho</em>.</h2>
         </div>
         <div class="pillars">
@@ -371,14 +370,14 @@
     </section>
 
     <!-- SOBRE -->
-    <section class="section section--alt" id="sobre">
+    <section class="section" id="sobre">
       <div class="wrap about">
         <div class="win win--light about__photo reveal">
           <div class="win__bar"><i></i><i></i><i></i><span>silas.jpg</span></div>
           <img src="assets/silas.jpg" alt="Silas Khalek sorrindo e mostrando o crachá do evento Build with AI, do Google" width="960" height="1200" loading="lazy" />
         </div>
         <div class="about__text">
-          <p class="kicker reveal">06 · Quem sou eu</p>
+          <p class="kicker reveal">07 · Quem sou eu</p>
           <h2 class="h2 reveal">Prazer, <em>Silas Khalek</em>.</h2>
           <ul class="chips about__creds reveal" aria-label="Credenciais">
             <li>Cientista de dados</li>
@@ -399,10 +398,10 @@
     </section>
 
     <!-- O CURSO (em breve) -->
-    <section class="section" id="curso">
+    <section class="section section--alt" id="curso">
       <div class="wrap curso">
         <div>
-          <p class="kicker reveal">07 · Em breve</p>
+          <p class="kicker reveal">08 · Em breve</p>
           <h2 class="h2 reveal">O curso <em>tá vindo</em>.</h2>
           <p class="lead reveal">
             Pra quem prefere aprender no próprio ritmo. Quatro módulos direto ao ponto,
@@ -443,10 +442,10 @@
     </section>
 
     <!-- FAQ -->
-    <section class="section section--alt" id="faq">
+    <section class="section" id="faq">
       <div class="wrap faq">
         <div>
-          <p class="kicker reveal">08 · Dúvidas</p>
+          <p class="kicker reveal">09 · Dúvidas</p>
           <h2 class="h2 reveal">Perguntas <em>frequentes</em>.</h2>
         </div>
         <div class="faq__list">
