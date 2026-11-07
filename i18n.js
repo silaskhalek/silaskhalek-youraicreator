@@ -29,12 +29,14 @@
       "Data scientist, 2× Google certified. I use AI every day and I'll show you how to do the same.",
 
     // Faixa e números
-    "Foto": "Photo",
-    "Vídeo": "Video",
     "certificado pelo Google": "Google certified",
-    "IAs que eu uso todo dia": "AIs I use every day",
-    "tipos de projeto com a equipe BLDRX": "project types with the BLDRX team",
-    "formatos de consultoria": "consulting formats",
+    "Formação reconhecida em IA e dados.": "Recognized training in AI and data.",
+    "IAs no dia a dia": "AIs in daily use",
+    "Claude, ChatGPT, Gemini e Higgsfield.": "Claude, ChatGPT, Gemini and Higgsfield.",
+    "projetos sob medida": "custom-made projects",
+    "Feito pro seu negócio, não copiado de outro.": "Built for your business, not copied from someone else's.",
+    "consultoria individual": "one-on-one consulting",
+    "Só você e eu, olhando pro seu caso.": "Just you and me, looking at your case.",
 
     // 01 · O ponto
     "01 · O ponto": "01 · The point",
