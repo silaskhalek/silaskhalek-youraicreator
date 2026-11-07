@@ -216,23 +216,35 @@
       </div>
     </section>
 
-    <!-- PROCESSO -->
-    <section class="section" id="processo">
-      <div class="wrap">
-        <div class="section__head">
-          <p class="kicker reveal">03 · Como funciona</p>
+    <!-- PROCESSO (tabuleiro de xadrez que avança com a rolagem) -->
+    <section class="chess-pin" id="processo" data-chess>
+    <div class="chess">
+      <video class="chess__video" data-chess-video muted playsinline preload="auto" poster="assets/xadrez-poster.jpg" aria-hidden="true">
+        <source src="assets/xadrez-m.webm" type="video/webm" media="(max-width: 700px)" />
+        <source src="assets/xadrez-m.mp4" type="video/mp4" media="(max-width: 700px)" />
+        <source src="assets/xadrez.webm" type="video/webm" />
+        <source src="assets/xadrez.mp4" type="video/mp4" />
+      </video>
+      <div class="chess__shade" aria-hidden="true"></div>
+      <div class="wrap chess__content">
+        <div class="chess__head">
+          <p class="kicker kicker--light reveal">03 · Como funciona</p>
           <h2 class="h2 reveal">Da primeira mensagem <em>à entrega</em>.</h2>
           <p class="lead reveal">Seja consultoria ou projeto com a equipe, o caminho é claro do começo ao fim.</p>
         </div>
-        <ol class="process" data-process>
-          <li class="process__step"><span class="process__num">1</span><h3>Conversa</h3><p>Você me chama no WhatsApp e conta o que precisa. Sem formulário enorme.</p></li>
-          <li class="process__step"><span class="process__num">2</span><h3>Diagnóstico</h3><p>Eu entendo o seu momento e indico o caminho: consultoria, serviço da equipe ou os dois.</p></li>
-          <li class="process__step"><span class="process__num">3</span><h3>Proposta</h3><p>Você recebe escopo, prazo e valor por escrito, antes de fechar qualquer coisa.</p></li>
-          <li class="process__step"><span class="process__num">4</span><h3>Mão na massa</h3><p>Na consultoria, a gente faz junto. Nos serviços, a equipe BLDRX constrói e te mostra o andamento.</p></li>
-          <li class="process__step"><span class="process__num">5</span><h3>Ajustes</h3><p>Você revisa, aponta o que mudar e a gente refina até ficar do jeito certo.</p></li>
-          <li class="process__step"><span class="process__num">6</span><h3>Entrega</h3><p>Projeto no ar ou plano na mão, com tudo explicado pra você seguir com segurança.</p></li>
-        </ol>
+        <div class="chess__foot">
+          <div class="chess__progress" aria-hidden="true"><span data-chess-bar></span></div>
+          <ol class="chess__steps" data-chess-steps>
+            <li class="chess__step"><span class="chess__num">1</span><div><h3>Conversa</h3><p>Você me chama no WhatsApp e conta o que precisa. Sem formulário enorme.</p></div></li>
+            <li class="chess__step"><span class="chess__num">2</span><div><h3>Diagnóstico</h3><p>Eu entendo o seu momento e indico o caminho: consultoria, serviço da equipe ou os dois.</p></div></li>
+            <li class="chess__step"><span class="chess__num">3</span><div><h3>Proposta</h3><p>Você recebe escopo, prazo e valor por escrito, antes de fechar qualquer coisa.</p></div></li>
+            <li class="chess__step"><span class="chess__num">4</span><div><h3>Mão na massa</h3><p>Na consultoria, a gente faz junto. Nos serviços, a equipe BLDRX constrói e te mostra o andamento.</p></div></li>
+            <li class="chess__step"><span class="chess__num">5</span><div><h3>Ajustes</h3><p>Você revisa, aponta o que mudar e a gente refina até ficar do jeito certo.</p></div></li>
+            <li class="chess__step"><span class="chess__num">6</span><div><h3>Entrega</h3><p>Projeto no ar ou plano na mão, com tudo explicado pra você seguir com segurança.</p></div></li>
+          </ol>
+        </div>
       </div>
+    </div>
     </section>
 
     <!-- MÉTODO -->

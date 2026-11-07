@@ -47,3 +47,7 @@ As traduções ficam em `i18n.js`, num dicionário "texto em português → text
 ## Prévia de compartilhamento
 
 A imagem que aparece ao mandar o link (`assets/og-image.jpg`, 1200×630) é um print do topo do site. Se o topo mudar, gere de novo e aumente o número em `?v=` nas tags `og:image` do `index.html`, pra o WhatsApp buscar a imagem nova.
+
+## Vídeo do tabuleiro (Como funciona)
+
+A seção "Como funciona" fica presa na tela e o vídeo do tabuleiro (`assets/xadrez*.mp4/.webm`) avança com a rolagem. Os vídeos foram gerados com um quadro-chave por quadro (`-g 1` no ffmpeg) pra rolar liso pra frente e pra trás; o `-m` é a versão recortada em pé pro celular. Se trocar o vídeo, gere de novo com essas mesmas opções.

@@ -154,7 +154,7 @@ const onScroll = () => {
   nav.classList.toggle("is-scrolled", window.scrollY > 8);
   // Navegação clara por cima dos blocos escuros: transparente no topo, escura no fechamento
   nav.classList.toggle("is-over-hero", isUnderNav(hero));
-  nav.classList.toggle("is-over-dark", isUnderNav(closing) || isUnderNav(document.querySelector("[data-king]")));
+  nav.classList.toggle("is-over-dark", ["[data-king]", ".chess", ".closing"].some((sel) => isUnderNav(document.querySelector(sel))));
 };
 onScroll();
 window.addEventListener("scroll", onScroll, { passive: true });
@@ -360,20 +360,11 @@ const scrollProgress = (el, start, end) => {
   return Math.min(1, Math.max(0, (vh * start - r.top) / total));
 };
 
-const process = document.querySelector("[data-process]");
-const processSteps = process ? [...process.querySelectorAll(".process__step")] : [];
-
 const updateScroll = () => {
   fillEls.forEach(({ el, words }) => {
     const lit = reduceMotion ? words.length : Math.round(scrollProgress(el, 0.85, 0.45) * words.length);
     words.forEach((w, i) => w.classList.toggle("is-lit", i < lit));
   });
-
-  // Processo: as etapas acendem uma a uma conforme a rolagem
-  if (process) {
-    const on = reduceMotion ? processSteps.length : Math.max(1, Math.ceil(scrollProgress(process, 0.8, 0.4) * processSteps.length));
-    processSteps.forEach((step, i) => step.classList.toggle("is-active", i < on));
-  }
 };
 
 let ticking = false;
@@ -474,6 +465,79 @@ if (king && window.gsap && window.ScrollTrigger && !reduceMotion) {
 
   // Recalcula depois que a abertura some (a página muda de altura)
   (window.preloaderDone || Promise.resolve()).then(() => ScrollTrigger.refresh());
+}
+
+/* ==========================================================================
+   Processo: o vídeo do tabuleiro avança com a rolagem e as etapas acendem
+   ========================================================================== */
+const chess = document.querySelector("[data-chess]");
+if (chess) {
+  const video = chess.querySelector("[data-chess-video]");
+  const steps = [...chess.querySelectorAll(".chess__step")];
+  const bar = chess.querySelector("[data-chess-bar]");
+
+  const setStep = (p) => {
+    const active = Math.min(steps.length - 1, Math.floor(p * steps.length));
+    steps.forEach((s, i) => {
+      s.classList.toggle("is-active", i === active);
+      s.classList.toggle("is-done", i < active);
+    });
+    if (bar) bar.style.transform = `scaleX(${p})`;
+  };
+
+  if (reduceMotion || !window.gsap || !window.ScrollTrigger) {
+    // Sem animação: mostra a última cena (o rei) e todas as etapas
+    chess.classList.add("is-static");
+    video.addEventListener("loadedmetadata", () => { video.currentTime = video.duration; }, { once: true });
+  } else {
+    gsap.registerPlugin(ScrollTrigger);
+    setStep(0);
+
+    // Baixa o vídeo inteiro quando a seção se aproxima: assim dá pra avançar e
+    // voltar quadro a quadro sem travar (e funciona em qualquer servidor)
+    let loaded = false;
+    const preload = async () => {
+      if (loaded) return;
+      loaded = true;
+      try {
+        if (!video.currentSrc) await new Promise((r) => video.addEventListener("loadedmetadata", r, { once: true }));
+        const blob = await (await fetch(video.currentSrc)).blob();
+        video.src = URL.createObjectURL(blob);
+        video.load();
+        await new Promise((r) => video.addEventListener("loadeddata", r, { once: true }));
+        // iOS só deixa avançar o vídeo depois de um play; toca e pausa na hora
+        await video.play().catch(() => {});
+        video.pause();
+        render();
+      } catch (e) {
+        console.error(e);
+      }
+    };
+    new IntersectionObserver(([e]) => e.isIntersecting && preload(), { rootMargin: "1500px 0px" }).observe(chess);
+
+    const state = { p: 0 };
+    const render = () => {
+      if (video.duration) {
+        const t = state.p * (video.duration - 0.05);
+        if (Math.abs(video.currentTime - t) > 0.01) video.currentTime = t;
+      }
+      setStep(state.p);
+    };
+
+    ScrollTrigger.create({
+      trigger: chess,
+      start: "top top",
+      end: () => `+=${window.innerHeight * 2.4}`,
+      pin: true,
+      scrub: true,
+      anticipatePin: 1,
+      onUpdate: (self) => {
+        gsap.to(state, { p: self.progress, duration: 0.35, ease: "power2.out", overwrite: true, onUpdate: render });
+      },
+    });
+
+    (window.preloaderDone || Promise.resolve()).then(() => ScrollTrigger.refresh());
+  }
 }
 
 /* ==========================================================================

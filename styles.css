@@ -597,51 +597,133 @@ h1, h2, h3 { font-family: var(--display); font-weight: 500; text-wrap: balance; 
 .creds__line span { white-space: nowrap; }
 .creds__sep { flex: none; width: 12px; height: 12px; fill: var(--accent); }
 
-/* Processo */
+/* Processo: tabuleiro de xadrez que avança com a rolagem */
 
-.process {
+/* O wrapper é o que fica preso na tela (sem margem, pra não vazar pro lado) */
+.chess-pin { padding: calc(64px + clamp(6px, 0.8vw, 10px)) clamp(8px, 1.2vw, 16px) clamp(8px, 1.2vw, 16px); }
+
+.chess {
+  position: relative;
+  height: calc(100svh - 64px - clamp(6px, 0.8vw, 10px) - clamp(8px, 1.2vw, 16px));
+  min-height: 560px;
+  overflow: hidden;
+  border-radius: clamp(24px, 3vw, 40px);
+  background: #000;
+  color: #f4f1ec;
+}
+
+.chess__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.chess__shade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.78) 0%, rgba(0, 0, 0, 0.2) 30%, transparent 48%),
+    linear-gradient(to top, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.55) 26%, transparent 50%);
+}
+
+.chess__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding-top: clamp(40px, 7vh, 72px);
+  padding-bottom: clamp(28px, 5vh, 48px);
+}
+
+.chess__head .lead { color: rgba(244, 241, 236, 0.72); max-width: 520px; }
+.chess__head .h2 em { color: #c4a5ff; }
+
+.chess__progress {
+  height: 2px;
+  margin-bottom: 22px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.14);
+  overflow: hidden;
+}
+.chess__progress span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #8b5cf6, #c4a5ff);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.chess__steps {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 48px 32px;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px;
   margin: 0;
   padding: 0;
   list-style: none;
 }
-.process__step { position: relative; opacity: 0.45; transition: opacity 0.5s var(--ease); }
-.process__step.is-active { opacity: 1; }
-.process__step::after {
-  content: "";
-  position: absolute;
-  top: 22px;
-  left: 60px;
-  right: -20px;
-  height: 1px;
-  background: var(--line-strong);
+.chess__step {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  opacity: 0.4;
+  transition: opacity 0.4s var(--ease);
 }
-.process__step:nth-child(3n)::after { display: none; }
+.chess__step.is-active,
+.chess__step.is-done { opacity: 1; }
+.chess__step.is-done:not(.is-active) { opacity: 0.7; }
 
-.process__num {
+.chess__num {
   display: grid;
   place-items: center;
-  width: 44px;
-  height: 44px;
-  border: 1px solid var(--line-strong);
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 50%;
-  background: var(--bg);
-  font-family: var(--display);
-  font-size: 18px;
-  font-weight: 500;
-  color: var(--muted);
-  transition: background 0.4s, color 0.4s, border-color 0.4s, box-shadow 0.4s;
+  font-size: 14px;
+  transition: background 0.4s, border-color 0.4s, box-shadow 0.4s;
 }
-.process__step.is-active .process__num {
-  border-color: var(--accent);
-  background: var(--accent);
-  color: #fff;
-  box-shadow: 0 8px 24px -8px rgba(124, 58, 237, 0.7);
+.chess__step.is-active .chess__num,
+.chess__step.is-done .chess__num { border-color: #8b5cf6; background: #7c3aed; }
+.chess__step.is-active .chess__num { box-shadow: 0 0 0 6px rgba(124, 58, 237, 0.25); }
+
+.chess__step h3 { margin: 0 0 4px; font-size: 18px; font-weight: 500; }
+.chess__step p { margin: 0; font-size: 13.5px; font-weight: 300; line-height: 1.45; color: rgba(244, 241, 236, 0.7); }
+
+/* Celular: só a etapa atual aparece, trocando com a rolagem */
+@media (max-width: 760px) {
+  .chess__steps { display: block; position: relative; min-height: 120px; }
+  .chess__step {
+    position: absolute;
+    inset: 0 0 auto 0;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 16px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.35s var(--ease), transform 0.35s var(--ease);
+  }
+  .chess__step.is-active { opacity: 1; transform: none; }
+  .chess__step.is-done:not(.is-active) { opacity: 0; }
+  .chess__step h3 { font-size: 22px; }
+  .chess__step p { font-size: 15px; }
+  .chess__num { flex: none; }
 }
-.process__step h3 { margin: 18px 0 6px; font-size: 22px; letter-spacing: -0.02em; }
-.process__step p { margin: 0; max-width: 320px; font-size: 15px; color: var(--muted); }
+
+/* Sem animação (ou sem GSAP): seção normal, com a última imagem e todas as etapas */
+[data-chess].is-static .chess { height: auto; min-height: 0; }
+[data-chess].is-static .chess__content { gap: 40vh; }
+[data-chess].is-static .chess__step { opacity: 1; }
+[data-chess].is-static .chess__progress { display: none; }
+@media (max-width: 760px) {
+  [data-chess].is-static .chess__steps { display: grid; grid-template-columns: 1fr; gap: 20px; min-height: 0; }
+  [data-chess].is-static .chess__step { position: static; transform: none; }
+}
 
 /* ---------- Faixas cruzadas ---------- */
 
@@ -1368,9 +1450,6 @@ h1, h2, h3 { font-family: var(--display); font-weight: 500; text-wrap: balance; 
 
 @media (max-width: 1000px) {
   .method { grid-template-columns: 1fr; }
-  .process { grid-template-columns: repeat(2, 1fr); }
-  .process__step:nth-child(3n)::after { display: block; }
-  .process__step:nth-child(2n)::after { display: none; }
   .steps { grid-template-columns: repeat(2, 1fr); }
 }
 
@@ -1431,11 +1510,4 @@ h1, h2, h3 { font-family: var(--display); font-weight: 500; text-wrap: balance; 
   .hero__side { display: none; }
   .hero__sub { margin: 18px auto 0; font-size: 15px; }
   .hero__ctas { justify-content: center; margin-top: -6px; }
-  .process { grid-template-columns: 1fr; gap: 28px; }
-  .process__step { display: grid; grid-template-columns: 44px 1fr; column-gap: 18px; }
-  .process__num { grid-row: span 2; }
-  .process__step h3 { margin-top: 8px; }
-  .process__step::after,
-  .process__step:nth-child(3n)::after { display: block; top: 52px; bottom: -24px; left: 22px; right: auto; width: 1px; height: auto; }
-  .process__step:last-child::after { display: none; }
 }
