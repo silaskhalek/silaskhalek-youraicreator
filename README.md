@@ -27,7 +27,7 @@ Claude, ChatGPT, Gemini e Higgsfield.
 
 ## Foto
 
-A foto da seção "Sobre" fica em `assets/silas.jpg` (4:5, 960×1200). Para trocar, substitua o arquivo mantendo o nome.
+A foto do topo fica em `assets/silas-hero.jpg` (computador) e `assets/silas-hero-sm.jpg` (celular). Para trocar, substitua os arquivos mantendo os nomes.
 
 ## Publicar
 
