@@ -159,18 +159,15 @@
     "06 · Do meu jeito": "06 · My way",
     "Três regras que": "Three rules that",
     "guiam meu trabalho": "guide my work",
-    "fala comigo em português, sem jargão": "talk to me in plain words, no jargon",
-    "Em português, sem decoreba": "Plain language, no memorizing",
-    "Você não precisa de fórmula mágica nem de prompt em inglês. Precisa saber explicar o que quer.":
-      "You don't need magic formulas or fancy prompts. You need to know how to explain what you want.",
-    "nada de exercício de mentira": "no fake exercises",
-    "Projeto de verdade": "Real projects",
-    "Nada de teoria solta. Tudo o que a gente faz junto é pra usar no seu negócio no dia seguinte.":
-      "No loose theory. Everything we do together is meant to be used in your business the next day.",
-    "me ensina o método, não só a ferramenta": "teach me the method, not just the tool",
-    "Método que não vence": "A method that doesn't expire",
-    "As ferramentas mudam toda semana. O jeito de pensar que você aprende serve pra qualquer uma.":
-      "Tools change every week. The way of thinking you learn works with any of them.",
+    "antes da ferramenta, o objetivo": "before the tool, the goal",
+    "Estratégia primeiro": "Strategy first",
+    "Eu entendo o que o seu negócio precisa antes de abrir qualquer IA.": "I understand what your business needs before opening any AI.",
+    "nada de promessa milagrosa": "no miracle promises",
+    "Resultado, não hype": "Results, not hype",
+    "Se não gera resultado, não entra no projeto.": "If it doesn't drive results, it doesn't go into the project.",
+    "tudo por escrito": "everything in writing",
+    "Sem surpresa": "No surprises",
+    "Escopo, prazo e valor claros antes de começar. Você sabe exatamente o que vai receber.": "Clear scope, timeline and price before we start. You know exactly what you'll get.",
 
     // 07 · Curso
     "07 · Em breve": "07 · Coming soon",
