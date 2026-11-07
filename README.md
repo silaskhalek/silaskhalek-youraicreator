@@ -36,3 +36,7 @@ Funciona direto na Vercel, Netlify ou GitHub Pages: é só apontar para a raiz d
 ## Preloader
 
 A abertura com a galáxia fica em `preloader.js`. Na primeira visita da sessão ela dura cerca de 4 segundos; nas seguintes, uma versão curta. Um clique pula a animação, e quem usa "reduzir movimento" no sistema não vê a abertura.
+
+## Logo
+
+O logo SK fica em `assets/logo-sk.svg` e também dentro do `index.html` (no `<symbol id="sk-logo">`, usado no menu, no rodapé e na abertura, onde as partículas formam o logo). O ícone da aba é o `favicon.svg` e o do iPhone, `assets/apple-touch-icon.png`.

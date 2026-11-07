@@ -47,6 +47,39 @@
 
   let W, H, cx, cy, R, L, dpr, particles;
 
+  // Pontos do logo SK (lidos do <symbol> da página): o S fica branco e o K roxo
+  const LOGO_COLORS = { s: ["#ffffff", "#f4f1ec", "#e9ddff"], k: ["#7c06fb", "#8b5cf6", "#b794f6"] };
+  const logoPoints = (() => {
+    const sEl = document.getElementById("sk-s");
+    const kEl = document.getElementById("sk-k");
+    if (!sEl || !kEl || typeof Path2D === "undefined") return null;
+    const [vx, vy, vw, vh] = document.getElementById("sk-logo").getAttribute("viewBox").split(" ").map(Number);
+    const SW = 320;
+    const SH = Math.round((SW * vh) / vw);
+    const off = document.createElement("canvas");
+    off.width = SW;
+    off.height = SH;
+    const o = off.getContext("2d");
+    o.scale(SW / vw, SH / vh);
+    o.translate(-vx, -vy);
+    o.fillStyle = "#f00";
+    o.fill(new Path2D(sEl.getAttribute("d")));
+    o.fillStyle = "#00f";
+    o.fill(new Path2D(kEl.getAttribute("d")));
+    const data = o.getImageData(0, 0, SW, SH).data;
+    const pts = { s: [], k: [] };
+    for (let y = 0; y < SH; y += 2) {
+      for (let x = 0; x < SW; x += 2) {
+        const i = (y * SW + x) * 4;
+        if (data[i + 3] < 200) continue;
+        // coordenadas de -0.5 a 0.5 na largura, centradas
+        const pt = [x / SW - 0.5, (y / SH - 0.5) * (SH / SW)];
+        (data[i] > data[i + 2] ? pts.s : pts.k).push(pt);
+      }
+    }
+    return pts.s.length && pts.k.length ? pts : null;
+  })();
+
   const build = () => {
     dpr = Math.min(window.devicePixelRatio || 1, 2);
     W = window.innerWidth;
@@ -58,9 +91,11 @@
     cy = H / 2 - Math.min(H * 0.06, 40);
     R = Math.min(W, H) * 0.46;
     L = Math.min(W, H) * (W < 600 ? 0.17 : 0.13);
-    el.style.setProperty("--L", `${L}px`);
+    // Largura do logo formado pelas partículas
+    const LW = Math.min(W * 0.8, L * 4);
+    el.style.setProperty("--L", `${logoPoints ? LW * 0.25 : L}px`);
 
-    const count = Math.round(Math.min(1500, Math.max(600, (W * H) / 900)));
+    const count = Math.round(Math.min(logoPoints ? 2200 : 1500, Math.max(logoPoints ? 900 : 600, (W * H) / 650)));
     const ARMS = 3;
     particles = Array.from({ length: count }, (_, i) => {
       // Galáxia: braços em espiral, mais densa no centro
@@ -72,10 +107,17 @@
       const theta = core ? Math.random() * Math.PI * 2 : (arm / ARMS) * Math.PI * 2 + (r / R) * 4.2 + spread;
       const spin = 0.00055 + 0.0016 * (1 - r / R);
 
-      // Alvo: uma das 4 hastes do ✳, ou poeira em volta (15%)
+      // Alvo: um ponto do logo SK (ou do ✳ se o navegador não suportar), ou poeira em volta (15%)
       const dust = Math.random() < 0.15;
-      let tx, ty;
-      if (dust) {
+      let tx, ty, color;
+      if (!dust && logoPoints) {
+        const part = Math.random() < 0.55 ? "s" : "k";
+        const list = logoPoints[part];
+        const [px, py] = list[(Math.random() * list.length) | 0];
+        tx = (px + (Math.random() - 0.5) * 0.006) * LW;
+        ty = (py + (Math.random() - 0.5) * 0.006) * LW;
+        color = LOGO_COLORS[part][(Math.random() * 3) | 0];
+      } else if (dust) {
         const a = Math.random() * Math.PI * 2;
         const d = L * (1.2 + Math.random() * 1.4);
         tx = Math.cos(a) * d;
@@ -91,8 +133,9 @@
 
       return {
         r, theta, spin, tx, ty, dust,
-        size: Math.random() < 0.08 ? 1.6 + Math.random() * 1.4 : 0.5 + Math.random() * 1.1,
+        size: color ? 1 + Math.random() * 1.3 : Math.random() < 0.08 ? 1.6 + Math.random() * 1.4 : 0.5 + Math.random() * 1.1,
         color: COLORS[(Math.random() * COLORS.length) | 0],
+        target: color,
         alpha: dust ? 0.35 + Math.random() * 0.35 : 0.6 + Math.random() * 0.4,
         warp: 0.7 + Math.random() * 0.8,
       };
@@ -166,15 +209,19 @@
       const gy = Math.sin(a) * p.r;
 
       // ✳ girando devagar
-      const sx = p.tx * cosR - p.ty * sinR;
-      const sy = p.tx * sinR + p.ty * cosR;
+      // O ✳ e a poeira giram devagar; o logo SK fica parado e legível
+      const spinIt = p.dust || !p.target;
+      const sx = spinIt ? p.tx * cosR - p.ty * sinR : p.tx;
+      const sy = spinIt ? p.tx * sinR + p.ty * cosR : p.ty;
 
       let x = cx + gx + (sx - gx) * m;
       let y = cy + gy + (sy - gy) * m;
 
       ctx.globalAlpha = p.alpha * (p.dust ? 1 - m * 0.4 : 1);
-      ctx.fillStyle = p.color;
-      ctx.strokeStyle = p.color;
+      // Ao formar o logo, cada partícula assume a cor da letra (S branco, K roxo)
+      const col = p.target && m > 0.5 ? p.target : p.color;
+      ctx.fillStyle = col;
+      ctx.strokeStyle = col;
 
       if (e > 0) {
         // Hiperespaço: cada partícula dispara pra fora deixando um risco

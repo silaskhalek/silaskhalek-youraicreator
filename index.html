@@ -39,6 +39,13 @@
   </script>
 </head>
 <body>
+  <!-- Logo SK (usado no menu, no rodapé e na abertura) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="sk-logo" viewBox="70 102 1569 728">
+      <path id="sk-s" fill="currentColor" d="M 490 110 L 1142 110 L 970 282 L 475 282 A 47 47 0 0 0 475 376 L 828 376 Q 838 376 846 384 L 1058 597 L 940 716 C 895 761 830 822 770 822 L 78 822 L 245 654 L 738 654 Q 757 654 770 641 L 875 536 L 410 536 C 300 536 222 460 222 370 C 222 320 238 288 262 262 L 352 172 C 395 130 430 110 490 110 Z" />
+      <path id="sk-k" fill="#7c06fb" d="M 964 455 L 1325 112 Q 1330 110 1340 110 L 1631 110 L 1150 530 L 1318 530 Q 1332 530 1342 540 L 1631 822 L 1330 822 Z" />
+    </symbol>
+  </svg>
   <!-- PRELOADER -->
   <div class="preloader" aria-hidden="true">
     <canvas class="preloader__canvas"></canvas>
@@ -55,7 +62,7 @@
   <header class="nav" id="topo">
     <div class="wrap nav__inner">
       <a href="#topo" class="logo" aria-label="Silas Khalek, início">
-        <span class="logo__mark" aria-hidden="true">✳</span>
+        <svg class="logo__mark" aria-hidden="true"><use href="#sk-logo" /></svg>
         <span>Silas Khalek</span>
         <span class="logo__tag">your ai creator</span>
       </a>
@@ -459,7 +466,7 @@
   <footer class="footer">
     <div class="wrap footer__inner">
       <a href="#topo" class="logo">
-        <span class="logo__mark" aria-hidden="true">✳</span>
+        <svg class="logo__mark" aria-hidden="true"><use href="#sk-logo" /></svg>
         <span>Silas Khalek</span>
       </a>
       <nav class="footer__links" aria-label="Rodapé">
