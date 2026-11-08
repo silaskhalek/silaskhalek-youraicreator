@@ -109,12 +109,54 @@ const SCENARIOS_EN = [
 
 // Idioma atual (o i18n.js troca entre português e inglês)
 const isEN = () => window.i18n?.lang === "en";
-const t = (pt) => (window.i18n ? window.i18n.t(pt) : pt);
+// "tr" e não "t": o Lenis já ocupa o nome global "t"
+const tr = (pt) => (window.i18n ? window.i18n.t(pt) : pt);
 const scenarios = () => (isEN() ? SCENARIOS_EN : SCENARIOS_PT);
 
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 document.documentElement.classList.remove("no-js");
+
+/* ==========================================================================
+   Rolagem suave com inércia (Lenis), integrada ao GSAP
+   ========================================================================== */
+let lenis = null;
+if (!reduceMotion && window.Lenis) {
+  lenis = new Lenis({
+    duration: 1.2,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+  });
+
+  if (window.gsap && window.ScrollTrigger) {
+    gsap.registerPlugin(ScrollTrigger);
+    lenis.on("scroll", ScrollTrigger.update);
+    gsap.ticker.add((time) => lenis.raf(time * 1000));
+    gsap.ticker.lagSmoothing(0);
+  } else {
+    const raf = (time) => {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    };
+    requestAnimationFrame(raf);
+  }
+
+  // Links internos (#ofertas, #faq...) deslizam suave até a seção, descontando o menu
+  document.addEventListener("click", (e) => {
+    const a = e.target.closest('a[href^="#"]');
+    const id = a?.getAttribute("href");
+    if (!id || id.length < 2) return;
+    const target = document.querySelector(id);
+    if (!target) return;
+    e.preventDefault();
+    lenis.scrollTo(target, { offset: -70 });
+  });
+
+  // Durante a abertura a página fica parada
+  if (document.documentElement.classList.contains("is-loading")) {
+    lenis.stop();
+    (window.preloaderDone || Promise.resolve()).then(() => lenis.start());
+  }
+}
 
 // Ano no rodapé
 document.getElementById("ano").textContent = new Date().getFullYear();
@@ -301,13 +343,13 @@ if (methodEl) {
   copyBtn.addEventListener("click", async () => {
     try {
       await navigator.clipboard.writeText(scenarios()[current].cmd);
-      copyLabel.textContent = t("Copiado!");
+      copyLabel.textContent = tr("Copiado!");
       copyBtn.classList.add("is-copied");
     } catch {
-      copyLabel.textContent = t("Não deu pra copiar");
+      copyLabel.textContent = tr("Não deu pra copiar");
     }
     setTimeout(() => {
-      copyLabel.textContent = t("Copiar comando");
+      copyLabel.textContent = tr("Copiar comando");
       copyBtn.classList.remove("is-copied");
     }, 1800);
   });
@@ -405,13 +447,13 @@ document.querySelectorAll("[data-mini]").forEach((mini, i) => {
   typed.textContent = "";
   mini.classList.add("is-armed");
   window.addEventListener("langchange", () => {
-    if (mini.classList.contains("is-done")) typed.textContent = t(original);
+    if (mini.classList.contains("is-done")) typed.textContent = tr(original);
   });
 
   (window.preloaderDone || Promise.resolve()).then(() =>
     whenVisible(mini, async () => {
       await new Promise((r) => setTimeout(r, 250 + i * 450));
-      for (const char of t(original)) {
+      for (const char of tr(original)) {
         typed.textContent += char;
         await new Promise((r) => setTimeout(r, 26 + Math.random() * 30));
       }

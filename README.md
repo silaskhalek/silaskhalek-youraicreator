@@ -51,3 +51,7 @@ A imagem que aparece ao mandar o link (`assets/og-image.jpg`, 1200×630) é um p
 ## Vídeo do tabuleiro (Como funciona)
 
 A seção "Como funciona" fica presa na tela e o vídeo do tabuleiro (`assets/xadrez*.mp4/.webm`) avança com a rolagem. Os vídeos foram gerados com um quadro-chave por quadro (`-g 1` no ffmpeg) pra rolar liso pra frente e pra trás; o `-m` é a versão recortada em pé pro celular. Se trocar o vídeo, gere de novo com essas mesmas opções.
+
+## Rolagem suave
+
+A rolagem com inércia vem do [Lenis](https://github.com/darkroomengineering/lenis) (1,2 s de deslize), integrado ao GSAP no começo do `script.js`. Atenção: o arquivo do Lenis cria variáveis globais de uma letra (`t`, `i`, `e`, `s`, `o`, `n`, `r`), então não use esses nomes no nível de cima do `script.js`. Quem ativa "reduzir movimento" no sistema fica com a rolagem normal.
