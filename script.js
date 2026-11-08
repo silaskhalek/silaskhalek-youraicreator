@@ -472,16 +472,23 @@ if (king && window.gsap && window.ScrollTrigger && !reduceMotion) {
   const photo = king.querySelector("[data-king-photo] img");
   const sides = king.querySelectorAll("[data-king-side]");
 
-  // O rei sobe, cresce e gira de leve enquanto a seção passa pela tela
+  // O bloco preto cresce até ocupar o espaço enquanto entra na tela
+  gsap.fromTo(
+    king,
+    { scale: 0.9 },
+    { scale: 1, ease: "none", scrollTrigger: { trigger: king, start: "top bottom", end: "top 25%", scrub: 1 } }
+  );
+
+  // Zoom no rei: começa pequeno lá embaixo e cresce até ficar maior que a tela
   gsap.fromTo(
     photo,
-    { y: 90, scale: 0.82, rotate: -3 },
+    { y: 160, scale: 0.55, rotate: -4 },
     {
-      y: -30,
-      scale: 1.04,
+      y: -20,
+      scale: 1.3,
       rotate: 0,
       ease: "none",
-      scrollTrigger: { trigger: king, start: "top bottom", end: "bottom 30%", scrub: 0.6 },
+      scrollTrigger: { trigger: king, start: "top bottom", end: "bottom 20%", scrub: 1 },
     }
   );
 
@@ -595,15 +602,24 @@ if (closingVideo && !reduceMotion && "IntersectionObserver" in window) {
     { rootMargin: "200px 0px" }
   ).observe(closingVideo);
 
-  // Entra com um zoom suave
+  // Zoom na mão com o logo, acompanhando a rolagem, e o bloco preto crescendo junto
   if (window.gsap && window.ScrollTrigger) {
     gsap.registerPlugin(ScrollTrigger);
-    gsap.from(closingVideo, {
-      scale: 0.88,
-      opacity: 0,
-      duration: 1.4,
-      ease: "power3.out",
-      scrollTrigger: { trigger: closingVideo, start: "top 85%" },
-    });
+    const closingBlock = document.querySelector(".closing");
+    gsap.fromTo(
+      closingBlock,
+      { scale: 0.9 },
+      { scale: 1, ease: "none", scrollTrigger: { trigger: closingBlock, start: "top bottom", end: "top 25%", scrub: 1 } }
+    );
+    gsap.fromTo(
+      closingVideo,
+      { scale: 0.6, y: 120 },
+      {
+        scale: 1.06,
+        y: 10,
+        ease: "none",
+        scrollTrigger: { trigger: closingBlock, start: "top bottom", end: "bottom 35%", scrub: 1 },
+      }
+    );
   }
 }
