@@ -1,0 +1,5 @@
+# Silas Khalek · silaskhalek.vercel.app
+User-agent: *
+Allow: /
+
+Sitemap: https://silaskhalek.vercel.app/sitemap.xml

@@ -55,3 +55,11 @@ A seção "Como funciona" fica presa na tela e o vídeo do tabuleiro (`assets/xa
 ## Rolagem suave
 
 A rolagem com inércia vem do [Lenis](https://github.com/darkroomengineering/lenis) (1,2 s de deslize), integrado ao GSAP no começo do `script.js`. Atenção: o arquivo do Lenis cria variáveis globais de uma letra (`t`, `i`, `e`, `s`, `o`, `n`, `r`), então não use esses nomes no nível de cima do `script.js`. Quem ativa "reduzir movimento" no sistema fica com a rolagem normal.
+
+## SEO
+
+- `robots.txt`, `sitemap.xml` e `llms.txt` ficam na raiz. Ao mudar o conteúdo do site, atualize a data em `<lastmod>` do `sitemap.xml`.
+- Os dados estruturados (JSON-LD) ficam no `<head>` do `index.html`. As perguntas do `FAQPage` precisam ser iguais às da seção de dúvidas: se mudar uma, mude a outra.
+- `vercel.json` redireciona `/index.html` para `/` e define o cache dos arquivos. As imagens e vídeos em `assets/` ficam 7 dias no cache do navegador: ao trocar um arquivo, mude o nome (ou acrescente `?v=` no link).
+- Imagens: cada foto tem versão `.webp` (usada pelos navegadores) e `.jpg` (reserva). Ao trocar uma foto, gere as duas.
+- `404.html` é a página de erro (não é indexada).

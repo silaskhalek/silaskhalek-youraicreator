@@ -1,0 +1,26 @@
+# Silas Khalek
+
+> Site pessoal de Silas Khalek, cientista de dados 2× certificado pelo Google que trabalha com inteligência artificial. Oferece consultoria de IA individual e serviços digitais sob medida com a equipe BLDRX. Site em português (com versão em inglês pelo seletor de idioma).
+
+## Páginas
+
+- [Página inicial](https://silaskhalek.vercel.app/): apresentação, ofertas, como funciona, método e perguntas frequentes.
+
+## Ofertas
+
+- [Consultoria de IA](https://silaskhalek.vercel.app/#ofertas): por videochamada, em sessão avulsa (uma call para resolver um problema específico ou montar um plano de IA) ou mentoria mensal (encontros recorrentes com suporte durante o mês). Valor sob consulta.
+- [Serviços personalizados com a equipe BLDRX](https://silaskhalek.vercel.app/#ofertas): landing pages, sites institucionais, apps, social media e vídeos com IA, entre outros. Orçamento sob medida.
+
+## Como funciona
+
+- [Processo](https://silaskhalek.vercel.app/#processo): conversa pelo WhatsApp, diagnóstico, proposta por escrito (escopo, prazo e valor), execução, ajustes e entrega.
+- [Método](https://silaskhalek.vercel.app/#metodo): pedidos em linguagem natural para Claude, ChatGPT, Gemini e Higgsfield.
+
+## Perguntas frequentes
+
+- [Dúvidas](https://silaskhalek.vercel.app/#faq): como funciona a consultoria, diferença entre consultoria e serviços, preço, tipos de projeto e se é preciso saber programar.
+
+## Contato
+
+- Instagram: https://www.instagram.com/silas.khalek/
+- Contato comercial pelo WhatsApp, pelos botões do site.

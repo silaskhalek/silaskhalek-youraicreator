@@ -229,13 +229,13 @@
 
   const META = {
     pt: {
-      title: "Silas Khalek · Your AI Creator",
+      title: document.title,
       description: document.querySelector('meta[name="description"]')?.content || "",
     },
     en: {
-      title: "Silas Khalek · AI consulting & services",
+      title: "Silas Khalek | AI Consulting & Digital Services",
       description:
-        "AI consulting with Silas Khalek, Google-certified data scientist, and custom services with the BLDRX team: landing pages, websites, apps, social media and AI videos.",
+        "AI consulting with Silas Khalek, 2× Google-certified data scientist, and custom services with the BLDRX team: websites, apps and AI videos.",
     },
   };
 

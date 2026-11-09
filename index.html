@@ -4,8 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#050208" />
-  <title>Silas Khalek · Your AI Creator</title>
-  <meta name="description" content="Consultoria de IA com Silas Khalek, cientista de dados certificado pelo Google, e serviços personalizados com a equipe BLDRX: landing pages, sites, apps, social media e vídeos com IA." />
+  <title>Silas Khalek | Consultoria de IA e Serviços Digitais</title>
+  <meta name="description" content="Consultoria de IA com Silas Khalek, cientista de dados 2× certificado pelo Google, e serviços sob medida com a equipe BLDRX: sites, apps e vídeos com IA." />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="author" content="Silas Khalek" />
   <link rel="canonical" href="https://silaskhalek.vercel.app/" />
   <!-- Prévia ao compartilhar o link (WhatsApp, Instagram, LinkedIn, X...) -->
   <meta property="og:site_name" content="Silas Khalek" />
@@ -24,19 +26,176 @@
   <meta name="twitter:title" content="Silas Khalek | Consultoria e serviços com IA" />
   <meta name="twitter:description" content="Presença digital que impõe respeito. Consultoria de IA comigo ou serviços sob medida com a equipe BLDRX." />
   <meta name="twitter:image" content="https://silaskhalek.vercel.app/assets/og-image.jpg?v=2" />
+  <meta name="twitter:image:alt" content="Silas Khalek: Presença digital que impõe respeito. Resultado, não hype." />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="icon" href="assets/favicon-192.png" type="image/png" sizes="192x192" />
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="preload" as="image" href="assets/silas-hero.jpg" media="(min-width: 701px)" />
-  <link rel="preload" as="image" href="assets/silas-hero-sm.jpg" media="(max-width: 700px)" />
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <!-- Fontes: carregam sem travar a primeira pintura -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" /></noscript>
+  <link rel="preload" as="image" type="image/webp" href="assets/silas-hero-720.webp" imagesrcset="assets/silas-hero-720.webp 720w, assets/silas-hero.webp 1086w" imagesizes="min(75vh, 705px)" media="(min-width: 701px)" fetchpriority="high" />
+  <link rel="preload" as="image" type="image/webp" href="assets/silas-hero-sm.webp" media="(max-width: 700px)" fetchpriority="high" />
   <link rel="stylesheet" href="styles.css" />
   <script>
     // Marca o carregamento antes da primeira pintura (evita piscar o site antes do preloader)
     document.documentElement.classList.replace("no-js", "is-loading");
     try { if (sessionStorage.getItem("sk-intro")) document.documentElement.classList.add("intro-seen"); } catch (e) {}
+  </script>
+  <!-- Dados estruturados (schema.org) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://silaskhalek.vercel.app/#website",
+        "url": "https://silaskhalek.vercel.app/",
+        "name": "Silas Khalek",
+        "inLanguage": "pt-BR",
+        "publisher": {
+          "@id": "https://silaskhalek.vercel.app/#silas"
+        }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://silaskhalek.vercel.app/#webpage",
+        "url": "https://silaskhalek.vercel.app/",
+        "name": "Silas Khalek | Consultoria de IA e Serviços Digitais",
+        "description": "Consultoria de IA com Silas Khalek, cientista de dados 2× certificado pelo Google, e serviços sob medida com a equipe BLDRX: sites, apps e vídeos com IA.",
+        "inLanguage": "pt-BR",
+        "isPartOf": {
+          "@id": "https://silaskhalek.vercel.app/#website"
+        },
+        "about": {
+          "@id": "https://silaskhalek.vercel.app/#silas"
+        },
+        "primaryImageOfPage": {
+          "@type": "ImageObject",
+          "url": "https://silaskhalek.vercel.app/assets/og-image.jpg",
+          "width": 1200,
+          "height": 630
+        }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://silaskhalek.vercel.app/#silas",
+        "name": "Silas Khalek",
+        "url": "https://silaskhalek.vercel.app/",
+        "image": "https://silaskhalek.vercel.app/assets/silas-hero.jpg",
+        "jobTitle": "Cientista de dados",
+        "description": "Cientista de dados, 2× certificado pelo Google. Trabalha com inteligência artificial e oferece consultoria de IA e serviços sob medida com a equipe BLDRX.",
+        "knowsAbout": [
+          "Inteligência artificial",
+          "Ciência de dados",
+          "Claude",
+          "ChatGPT",
+          "Gemini",
+          "Higgsfield"
+        ],
+        "sameAs": [
+          "https://www.instagram.com/silas.khalek/"
+        ]
+      },
+      {
+        "@type": "Service",
+        "@id": "https://silaskhalek.vercel.app/#consultoria",
+        "name": "Consultoria de IA",
+        "serviceType": "Consultoria de inteligência artificial",
+        "description": "Consultoria individual por videochamada para usar IA no trabalho ou no negócio, em sessão avulsa ou mentoria mensal.",
+        "provider": {
+          "@id": "https://silaskhalek.vercel.app/#silas"
+        },
+        "availableChannel": {
+          "@type": "ServiceChannel",
+          "serviceUrl": "https://silaskhalek.vercel.app/#ofertas"
+        },
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Formatos de consultoria",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Sessão avulsa"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Mentoria mensal"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "@type": "Service",
+        "@id": "https://silaskhalek.vercel.app/#servicos",
+        "name": "Serviços personalizados com a equipe BLDRX",
+        "serviceType": "Desenvolvimento e criação digital",
+        "description": "Landing pages, sites institucionais, apps, social media e vídeos com IA, feitos sob medida pela equipe BLDRX.",
+        "provider": {
+          "@type": "Organization",
+          "name": "BLDRX"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://silaskhalek.vercel.app/#faq",
+        "url": "https://silaskhalek.vercel.app/#faq",
+        "inLanguage": "pt-BR",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Como funciona a consultoria?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "É por videochamada. Na sessão avulsa a gente foca num problema específico. Na mentoria mensal eu te acompanho com encontros recorrentes e suporte entre eles."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Qual a diferença entre a consultoria e os serviços?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Na consultoria você aprende e faz, comigo do lado. Nos serviços, a minha equipe na BLDRX faz pra você."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quanto custa?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Depende do formato e do escopo. Me chama no WhatsApp, eu entendo o que você precisa e te passo o valor."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Que tipo de projeto a equipe faz?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Landing pages, sites institucionais, apps, social media e vídeos com IA, entre outros. Se o seu projeto não está na lista, chama mesmo assim."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Preciso saber programar ou entender de IA?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Não. A consultoria parte do ponto em que você está, em português e sem jargão. Nos serviços, a parte técnica fica toda com a gente."
+            }
+          }
+        ]
+      }
+    ]
+  }
   </script>
 </head>
 <body>
@@ -62,7 +221,7 @@
 
   <header class="nav" id="topo">
     <div class="wrap nav__inner">
-      <a href="#topo" class="logo" aria-label="Silas Khalek, início">
+      <a href="#topo" class="logo">
         <svg class="logo__mark" aria-hidden="true"><use href="#sk-logo" /></svg>
         <span>Silas Khalek</span>
         <span class="logo__tag">your ai creator</span>
@@ -91,8 +250,10 @@
     <!-- HERO -->
     <section class="hero" data-hero>
       <picture class="hero__photo">
+        <source media="(max-width: 700px)" type="image/webp" srcset="assets/silas-hero-sm.webp" />
         <source media="(max-width: 700px)" srcset="assets/silas-hero-sm.jpg" />
-        <img src="assets/silas-hero.jpg" alt="Silas Khalek de óculos escuros, sorrindo, com luz roxa ao fundo" width="1086" height="1448" fetchpriority="high" />
+        <source type="image/webp" srcset="assets/silas-hero-720.webp 720w, assets/silas-hero.webp 1086w" sizes="min(75vh, 705px)" />
+        <img src="assets/silas-hero.jpg" alt="Silas Khalek de óculos escuros, sorrindo, com luz roxa ao fundo" width="1086" height="1448" fetchpriority="high" decoding="async" />
       </picture>
       <div class="hero__glow" aria-hidden="true"></div>
 
@@ -100,7 +261,7 @@
         <div class="hero__copy">
           <p class="kicker kicker--light reveal"><span class="dot"></span> Consultoria e serviços com IA</p>
           <h1 class="hero__title reveal">
-            Presença digital<br />
+            Presença digital <br />
             <em>que impõe respeito.</em>
           </h1>
           <p class="hero__sub reveal">
@@ -114,7 +275,7 @@
         </div>
 
         <div class="hero__side">
-          <p class="hero__big reveal">Resultado,<br />não hype.</p>
+          <p class="hero__big reveal">Resultado, <br />não hype.</p>
           <p class="hero__note reveal">Cientista de dados, 2× certificado pelo Google. Eu uso IA todo dia e te mostro como fazer o mesmo.</p>
         </div>
       </div>
@@ -149,14 +310,14 @@
     <section class="king" data-king>
       <div class="king__glow" aria-hidden="true"></div>
       <div class="wrap king__inner">
-        <h2 class="king__title reveal">IA sem estratégia<br />é só mais <em>um peão</em>.</h2>
+        <h2 class="king__title reveal">IA sem estratégia <br />é só mais <em>um peão</em>.</h2>
         <picture class="king__photo" data-king-photo>
-          <source media="(max-width: 700px)" srcset="assets/rei-sm.jpg" />
-          <img src="assets/rei.jpg" alt="Rei do xadrez de vidro roxo sobre uma rocha escura" width="1254" height="1254" loading="lazy" />
+          <source type="image/webp" srcset="assets/rei-520.webp 520w, assets/rei-800.webp 800w, assets/rei.webp 1254w" sizes="(max-width: 860px) min(440px, 92vw), 520px" />
+          <img src="assets/rei-sm.jpg" srcset="assets/rei-sm.jpg 800w, assets/rei.jpg 1254w" sizes="(max-width: 860px) min(440px, 92vw), 520px" alt="Rei do xadrez de vidro roxo sobre uma rocha escura" width="1254" height="1254" loading="lazy" decoding="async" />
         </picture>
         <p class="king__left" data-king-side="left">Antes de abrir qualquer IA, eu penso na jogada certa pro seu negócio.</p>
         <div class="king__right" data-king-side="right">
-          <p>Menos tentativa e erro.<br />Mais movimentos certos.</p>
+          <p>Menos tentativa e erro. <br />Mais movimentos certos.</p>
           <a href="#ofertas" class="btn btn--light" data-wa="Oi, Silas! Vim pelo site e quero conversar sobre consultoria ou serviços.">Falar comigo <span class="btn__icon" aria-hidden="true">↗</span></a>
         </div>
       </div>
@@ -219,7 +380,7 @@
     <!-- PROCESSO (tabuleiro de xadrez que avança com a rolagem) -->
     <section class="chess-pin" id="processo" data-chess>
     <div class="chess">
-      <video class="chess__video" data-chess-video muted playsinline preload="auto" poster="assets/xadrez-poster.jpg" aria-hidden="true">
+      <video class="chess__video" data-chess-video muted playsinline preload="none" poster="assets/xadrez-poster.webp" aria-hidden="true">
         <source src="assets/xadrez-m.webm" type="video/webm" media="(max-width: 700px)" />
         <source src="assets/xadrez-m.mp4" type="video/mp4" media="(max-width: 700px)" />
         <source src="assets/xadrez.webm" type="video/webm" />
@@ -253,7 +414,7 @@
         <div class="method">
           <div class="method__copy">
             <p class="kicker reveal">04 · O método</p>
-            <h2 class="h2 reveal">Você pede.<br /><em>A&nbsp;IA executa.</em></h2>
+            <h2 class="h2 reveal">Você pede. <br /><em>A&nbsp;IA executa.</em></h2>
             <p class="lead reveal">
               Você descreve o que quer como descreveria pra um amigo, na IA certa pra cada tarefa.
               Ela trabalha, mostra o que fez e entrega o resultado. Sem decorar fórmula, sem prompt em inglês.
@@ -418,7 +579,7 @@
           acontecer pra IA trabalhar a favor do seu negócio.
         </p>
         <div class="closing__photo reveal">
-          <video class="closing__video" data-closing-video muted loop playsinline preload="none" poster="assets/sk-mao-poster.jpg" width="720" height="960" aria-label="Logo SK flutuando em luz roxa sobre a palma de uma mão">
+          <video class="closing__video" data-closing-video muted loop playsinline preload="none" poster="assets/sk-mao-poster.webp" width="720" height="960" aria-label="Logo SK flutuando em luz roxa sobre a palma de uma mão">
             <source src="assets/sk-mao.webm" type="video/webm" />
             <source src="assets/sk-mao.mp4" type="video/mp4" />
           </video>

@@ -538,6 +538,8 @@ if (chess) {
     // Sem animação: mostra a última cena (o rei) e todas as etapas
     chess.classList.add("is-static");
     video.addEventListener("loadedmetadata", () => { video.currentTime = video.duration; }, { once: true });
+    video.preload = "metadata";
+    video.load();
   } else {
     gsap.registerPlugin(ScrollTrigger);
     setStep(0);
