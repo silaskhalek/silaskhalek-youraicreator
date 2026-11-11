@@ -7,7 +7,7 @@ const CONFIG = {
 
   // Número do WhatsApp com DDI e DDD, só dígitos (ex.: "5511999999999").
   // Os botões de contato abrem uma conversa com mensagem pronta.
-  whatsapp: "5511960965638",
+  whatsapp: "5511991365317",
 };
 
 /* ==========================================================================
